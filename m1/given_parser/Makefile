@@ -8,23 +8,18 @@ JSONJAR=/home/akeen/public/javax.json-1.0.4.jar
 
 CLASSPATH_MOD=$(ANTLRJAR):$(JSONJAR)
 
-FILES=MiniCompiler.java MiniToJsonVisitor.java MiniToAstDeclarationsVisitor.java
- MiniToAstExpressionVisitor.java MiniToAstFunctionVisitor.java MiniToAstProgramV
-isitor.java MiniToAstStatementVisitor.java MiniToAstTypeDeclarationVisitor.java 
-MiniToAstTypeVisitor.java
+FILES=MiniCompiler.java MiniToJsonVisitor.java MiniToAstDeclarationsVisitor.java MiniToAstExpressionVisitor.java MiniToAstFunctionVisitor.java MiniToAstProgramVisitor.java MiniToAstStatementVisitor.java MiniToAstTypeDeclarationVisitor.java MiniToAstTypeVisitor.java
 
-GENERATED=MiniBaseVisitor.java MiniLexer.java MiniLexer.tokens Mini.tokens MiniV
-isitor.java MiniParser.java MiniBaseListener.java MiniListener.java
+GENERATED=MiniBaseVisitor.java MiniLexer.java MiniLexer.tokens Mini.tokens MiniVisitor.java MiniParser.java MiniBaseListener.java MiniListener.java
 
 all : MiniCompiler.class
 
 MiniCompiler.class : antlr.generated ${FILES}
-   $(JAVAC) -cp ${CLASSPATH}:$(CLASSPATH_MOD) *.java ast/*.java
+	$(JAVAC) -cp ${CLASSPATH}:$(CLASSPATH_MOD) *.java ast/*.java
 
 antlr.generated : Mini.g4
-   $(JAVA) -cp ${CLASSPATH}:$(CLASSPATH_MOD) org.antlr.v4.Tool -visitor Min
-i.g4
-   touch antlr.generated
+	$(JAVA) -cp ${CLASSPATH}:$(CLASSPATH_MOD) org.antlr.v4.Tool -visitor Mini.g4
+	touch antlr.generated
 
 clean:
-   \rm -rf *generated* ${GENERATED} *.class ast/*.class
+	\rm -rf *generated* ${GENERATED} *.class ast/*.class
