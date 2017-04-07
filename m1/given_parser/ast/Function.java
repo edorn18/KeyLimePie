@@ -21,4 +21,8 @@ public class Function
       this.locals = locals;
       this.body = body;
    }
+
+   public String getFunctionName() {
+      return name;
+   }
 }

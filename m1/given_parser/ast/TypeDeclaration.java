@@ -14,4 +14,8 @@ public class TypeDeclaration
       this.name = name;
       this.fields = fields;
    }
+
+   public String getTypeName() {
+      return name;
+   }
 }

@@ -12,4 +12,8 @@ public class Declaration
       this.type = type;
       this.name = name;
    }
+
+   public String getDeclName() {
+      return name;
+   }
 }

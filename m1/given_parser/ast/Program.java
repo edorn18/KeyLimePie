@@ -15,4 +15,28 @@ public class Program
       this.decls = decls;
       this.funcs = funcs;
    }
+
+   public void printAll() {
+      printTypes();
+      printDecls();
+      printFuncs();
+   }
+
+   private void printTypes() {
+      for (int i = 0; i < types.size(); i++) {
+         System.out.println(types.get(i).getTypeName());
+      }
+   }
+
+   private void printDecls() {
+      for (int i = 0; i < decls.size(); i++) {
+         System.out.println(decls.get(i).getDeclName());
+      }
+   }
+
+   private void printFuncs() {
+      for (int i = 0; i < funcs.size(); i++) {
+         System.out.println(funcs.get(i).getFunctionName());
+      }
+   }
 }
