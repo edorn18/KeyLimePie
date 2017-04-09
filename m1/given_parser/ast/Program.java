@@ -23,20 +23,26 @@ public class Program
    }
 
    private void printTypes() {
+      System.out.println("Printing the type list");
       for (int i = 0; i < types.size(); i++) {
          System.out.println(types.get(i).getTypeName());
       }
+      System.out.println("");
    }
 
    private void printDecls() {
+      System.out.println("Printing the decl list");
       for (int i = 0; i < decls.size(); i++) {
          System.out.println(decls.get(i).getDeclName());
       }
+      System.out.println("");
    }
 
    private void printFuncs() {
+      System.out.println("Printing the func list");
       for (int i = 0; i < funcs.size(); i++) {
          System.out.println(funcs.get(i).getFunctionName());
       }
+      System.out.println("");
    }
 }
