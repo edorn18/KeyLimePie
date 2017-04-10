@@ -16,4 +16,8 @@ public class Declaration
    public String getDeclName() {
       return name;
    }
+
+   public Type getDeclType() {
+      return type;
+   }
 }

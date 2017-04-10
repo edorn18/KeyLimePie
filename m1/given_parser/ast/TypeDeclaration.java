@@ -18,4 +18,8 @@ public class TypeDeclaration
    public String getTypeName() {
       return name;
    }
+
+   public List<Declaration> getFields() {
+      return fields;
+   }
 }

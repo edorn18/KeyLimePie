@@ -25,4 +25,17 @@ public class Function
    public String getFunctionName() {
       return name;
    }
+
+   public List<Declaration> getFunctionParams() {
+      return params;
+   }
+   
+   public List<Declaration> getFunctionLocals() {
+      return locals;
+   }
+
+   public Statement getBody() {
+      return body;
+   }
+
 }
