@@ -30,6 +30,26 @@ public class UnaryExpression
       }
    }
 
+   public Type checkType() {
+      if (this.operator == Operator.NOT) {
+         if (operand.checkType() instanceof BoolType) {
+            return new BoolType();
+         }
+         else {
+            throw new IllegalArgumentException("Operand should evaluate to bool type");
+         }
+      }
+      else if (this.operator == Operator.MINUS) {
+         if (operand.checkType() instanceof IntType) {
+            return new IntType();
+         }
+         else {
+            throw new IllegalArgumentException("Operand does should evaluate to int type");
+         }
+      }
+      throw new IllegalArgumentException("Invalid operator");
+   }
+
    private static final String NOT_OPERATOR = "!";
    private static final String MINUS_OPERATOR = "-";
 

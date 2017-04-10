@@ -49,6 +49,47 @@ public class BinaryExpression
             throw new IllegalArgumentException();
       }
    }
+   
+   public Type checkIntType() {
+      if (this.operator == Operator.TIMES || this.operator == Operator.DIVIDE
+	|| this.operator == Operator.PLUS || this.operator == Operator.MINUS) {
+         if (left.checkType() instanceof IntType && right.checkType() instanceof IntType) {
+            return new IntType();
+         }   
+         else {
+            throw new IllegalArgumentException("Left and right expressions should be of type int");
+         }   
+      } 
+      else if (this.operator == Operator.LT || this.operator == Operator.GT
+	|| this.operator == Operator.LE || this.operator == Operator.GE) {
+         if (left.checkType() instanceof IntType && right.checkType() instanceof IntType) {
+            return new IntType();
+         }   
+         else {
+            throw new IllegalArgumentException("Left and right expressions should be of type int");
+         }   
+      }   
+      else if (this.operator == Operator.EQ || this.operator == Operator.NE) {
+         if (left.checkType() instanceof IntType && right.checkType() instanceof IntType) {
+            return new IntType();
+         }
+         else if (left.checkType() instanceof BoolType && right.checkType() instanceof BoolType) {
+            return new BoolType();
+         }
+         else {
+            throw new IllegalArgumentException("Left and right expressions should be of same type");
+         }   
+      }
+      else if (this.operator == Operator.AND || this.operator == Operator.OR) {
+         if (left.checkType() instanceof BoolType && right.checkType() instanceof BoolType) {
+            return new BoolType();
+         }
+         else {
+            throw new IllegalArgumentException("Left and right expressions should be of type bool");
+         }   
+      }
+      throw new IllegalArgumentException("Invalid operator");
+   }
 
    private static final String TIMES_OPERATOR = "*";
    private static final String DIVIDE_OPERATOR = "/";

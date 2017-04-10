@@ -12,4 +12,12 @@ public class WhileStatement
       this.guard = guard;
       this.body = body;
    }
+   
+   public Type checkType() {
+      if (guard.checkType() instanceof BoolType) {
+         return new BoolType();
+      }
+      throw new IllegalArgumentException("Guard does not evaluate to bool type");
+   }
+
 }
