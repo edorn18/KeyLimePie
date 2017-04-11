@@ -1,5 +1,7 @@
 package ast;
 
+import java.util.Hashtable;
+
 public class UnaryExpression
    extends AbstractExpression
 {
@@ -30,9 +32,10 @@ public class UnaryExpression
       }
    }
 
-   public Type checkType() {
+   public Type checkType(Hashtable<String, Hashtable<String,Type>> funcTable,
+        Hashtable<String, Hashtable<String,Type>> structTable) {
       if (this.operator == Operator.NOT) {
-         if (operand.checkType() instanceof BoolType) {
+         if (operand.checkType(funcTable, structTable) instanceof BoolType) {
             return new BoolType();
          }
          else {
@@ -40,7 +43,7 @@ public class UnaryExpression
          }
       }
       else if (this.operator == Operator.MINUS) {
-         if (operand.checkType() instanceof IntType) {
+         if (operand.checkType(funcTable, structTable) instanceof IntType) {
             return new IntType();
          }
          else {

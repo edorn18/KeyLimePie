@@ -1,5 +1,7 @@
 package ast;
 
+import java.util.Hashtable;
+
 public class ConditionalStatement
    extends AbstractStatement
 {
@@ -14,5 +16,10 @@ public class ConditionalStatement
       this.guard = guard;
       this.thenBlock = thenBlock;
       this.elseBlock = elseBlock;
+   }
+
+   public Type checkType(Hashtable<String, Hashtable<String,Type>> funcTable,
+        Hashtable<String, Hashtable<String,Type>> structTable) {
+      return new IntType();
    }
 }

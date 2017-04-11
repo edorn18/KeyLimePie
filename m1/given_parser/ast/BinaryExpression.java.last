@@ -1,7 +1,5 @@
 package ast;
 
-import java.util.Hashtable;
-
 public class BinaryExpression
    extends AbstractExpression
 {
@@ -52,11 +50,10 @@ public class BinaryExpression
       }
    }
    
-   public Type checkType(Hashtable<String, Hashtable<String,Type>> funcTable,
-        Hashtable<String, Hashtable<String,Type>> structTable) {
+   public Type checkIntType() {
       if (this.operator == Operator.TIMES || this.operator == Operator.DIVIDE
 	|| this.operator == Operator.PLUS || this.operator == Operator.MINUS) {
-         if (left.checkType(funcTable, structTable) instanceof IntType && right.checkType(funcTable, structTable) instanceof IntType) {
+         if (left.checkType() instanceof IntType && right.checkType() instanceof IntType) {
             return new IntType();
          }   
          else {
@@ -65,7 +62,7 @@ public class BinaryExpression
       } 
       else if (this.operator == Operator.LT || this.operator == Operator.GT
 	|| this.operator == Operator.LE || this.operator == Operator.GE) {
-         if (left.checkType(funcTable, structTable) instanceof IntType && right.checkType(funcTable, structTable) instanceof IntType) {
+         if (left.checkType() instanceof IntType && right.checkType() instanceof IntType) {
             return new IntType();
          }   
          else {
@@ -73,10 +70,10 @@ public class BinaryExpression
          }   
       }   
       else if (this.operator == Operator.EQ || this.operator == Operator.NE) {
-         if (left.checkType(funcTable, structTable) instanceof IntType && right.checkType(funcTable, structTable) instanceof IntType) {
+         if (left.checkType() instanceof IntType && right.checkType() instanceof IntType) {
             return new IntType();
          }
-         else if (left.checkType(funcTable, structTable) instanceof BoolType && right.checkType(funcTable, structTable) instanceof BoolType) {
+         else if (left.checkType() instanceof BoolType && right.checkType() instanceof BoolType) {
             return new BoolType();
          }
          else {
@@ -84,7 +81,7 @@ public class BinaryExpression
          }   
       }
       else if (this.operator == Operator.AND || this.operator == Operator.OR) {
-         if (left.checkType(funcTable, structTable) instanceof BoolType && right.checkType(funcTable, structTable) instanceof BoolType) {
+         if (left.checkType() instanceof BoolType && right.checkType() instanceof BoolType) {
             return new BoolType();
          }
          else {

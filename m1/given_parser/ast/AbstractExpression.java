@@ -3,7 +3,7 @@ package ast;
 public abstract class AbstractExpression
    implements Expression
 {
-   private final int lineNum;
+   protected final int lineNum;
 
    public AbstractExpression(int lineNum)
    {

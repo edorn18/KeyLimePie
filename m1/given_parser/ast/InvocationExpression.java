@@ -1,5 +1,7 @@
 package ast;
 
+import java.util.Hashtable;
+
 import java.util.List;
 
 public class InvocationExpression
@@ -15,4 +17,9 @@ public class InvocationExpression
       this.name = name;
       this.arguments = arguments;
    }
+
+   public Type checkType(Hashtable<String, Hashtable<String,Type>> funcTable,
+        Hashtable<String, Hashtable<String,Type>> structTable) {
+      return new IntType();
+   } 
 }

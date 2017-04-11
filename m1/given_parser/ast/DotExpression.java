@@ -1,5 +1,7 @@
 package ast;
 
+import java.util.Hashtable;
+
 public class DotExpression
    extends AbstractExpression
 {
@@ -11,5 +13,10 @@ public class DotExpression
       super(lineNum);
       this.left = left;
       this.id = id;
+   }
+ 
+   public Type checkType(Hashtable<String, Hashtable<String,Type>> funcTable,
+        Hashtable<String, Hashtable<String,Type>> structTable) { 
+      return new IntType();
    }
 }

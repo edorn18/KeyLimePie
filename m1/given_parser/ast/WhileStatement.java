@@ -1,5 +1,7 @@
 package ast;
 
+import java.util.Hashtable;
+
 public class WhileStatement
    extends AbstractStatement
 {
@@ -12,9 +14,10 @@ public class WhileStatement
       this.guard = guard;
       this.body = body;
    }
-   
-   public Type checkType() {
-      if (guard.checkType() instanceof BoolType) {
+  
+   public Type checkType(Hashtable<String, Hashtable<String,Type>> funcTable,
+        Hashtable<String, Hashtable<String,Type>> structTable) { 
+      if (guard.checkType(funcTable, structTable) instanceof BoolType) {
          return new BoolType();
       }
       throw new IllegalArgumentException("Guard does not evaluate to bool type");
