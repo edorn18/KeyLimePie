@@ -15,6 +15,9 @@ public class DeleteStatement
 
    public Type checkType(Hashtable<String, Hashtable<String,Type>> funcTable,
         Hashtable<String, Hashtable<String,Type>> structTable) {
-      return new IntType();
+      if (expression.checkType(funcTable, structTable) instanceof StructType) {
+         return new NullType();
+      }
+      throw new IllegalArgumentException("Expression must be a struct");
    }
 }

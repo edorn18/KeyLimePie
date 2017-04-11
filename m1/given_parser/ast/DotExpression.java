@@ -17,6 +17,12 @@ public class DotExpression
  
    public Type checkType(Hashtable<String, Hashtable<String,Type>> funcTable,
         Hashtable<String, Hashtable<String,Type>> structTable) { 
+      /*if (left.checkType(funcTable, structTable) instanceof StructType) {
+         if () {
+            
+         }
+      }*/
+
       return new IntType();
    }
 }

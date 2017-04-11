@@ -20,6 +20,10 @@ public class ConditionalStatement
 
    public Type checkType(Hashtable<String, Hashtable<String,Type>> funcTable,
         Hashtable<String, Hashtable<String,Type>> structTable) {
-      return new IntType();
+      if (guard.checkType(funcTable, structTable) instanceof BoolType) {
+         return new BoolType();
+      }
+
+      throw new IllegalArgumentException();
    }
 }
