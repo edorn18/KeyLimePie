@@ -91,7 +91,7 @@ public class Program
 
    public void checkType() {
       for (int i = 0; i < funcs.size(); i++) {
-         //funcs.get(i).getBody().checkType(funcTable.get(funcs.get(i).getFunctionName()), structTable);
+         funcs.get(i).checkType(funcTable, structTable);
       }
    }
 

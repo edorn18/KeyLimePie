@@ -1,6 +1,7 @@
 package ast;
 
 import java.util.List;
+import java.util.Hashtable;
 
 public class Function
 {
@@ -10,6 +11,8 @@ public class Function
    private final List<Declaration> params;
    private final List<Declaration> locals;
    private final Statement body;
+   private Hashtable<String, Hashtable<String,Type>> funcTable;
+   private Hashtable<String, Hashtable<String,Type>> structTable;   
 
    public Function(int lineNum, String name, List<Declaration> params,
       Type retType, List<Declaration> locals, Statement body)
@@ -34,8 +37,10 @@ public class Function
       return locals;
    }
 
-   public Statement getBody() {
-      return body;
+   public Type checkType(Hashtable<String, Hashtable<String,Type>> funcTable, Hashtable<String, Hashtable<String,Type>> structTable) {
+      this.funcTable = funcTable;
+      this.structTable = structTable;
+      return body.checkType(this.funcTable, this.structTable);
    }
 
 }
