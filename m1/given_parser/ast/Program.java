@@ -40,6 +40,9 @@ public class Program
       for (int i = 0; i < decls.size(); i++) {
          globalTable.put(decls.get(i).getDeclName(), decls.get(i).getDeclType());
       }
+      for (int i = 0; i < funcs.size(); i++) {
+         globalTable.put(funcs.get(i).getFunctionName(), new FuncType(funcs.get(i).getFunctionParams(), funcs.get(i).getFunctionRetType()));  
+      }
    }
 
    private void makeStructTable() {

@@ -29,6 +29,20 @@ public class Function
       return name;
    }
 
+/*
+   public List<Type> getFunctionParamsType() {
+      List<Type> types;
+      for (int i = 0; i < params.size(); i++) {
+         types.add(params.get(i).getDeclType());
+      }
+      return types;
+   }
+*/
+
+   public Type getFunctionRetType() {
+      return retType;
+   }
+
    public List<Declaration> getFunctionParams() {
       return params;
    }
@@ -37,10 +51,10 @@ public class Function
       return locals;
    }
 
-   public Type checkType(Hashtable<String, Hashtable<String,Type>> funcTable, Hashtable<String, Hashtable<String,Type>> structTable) {
+   public void checkType(Hashtable<String, Hashtable<String,Type>> funcTable, Hashtable<String, Hashtable<String,Type>> structTable) {
       this.funcTable = funcTable;
       this.structTable = structTable;
-      return body.checkType(this.funcTable, this.structTable);
+      body.checkType((this.funcTable).get(name), this.structTable, retType);
    }
 
 }
