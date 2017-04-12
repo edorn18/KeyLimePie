@@ -15,11 +15,9 @@ public class IdentifierExpression
 
    public Type checkType(Hashtable<String,Type> funcTable,
         Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
-/*      if (funcTable) {
-         return new NullType();
+      if (funcTable.get(id) == null) {
+         throw new IllegalArgumentException("Id was not found");
       }
-      throw new IllegalArgumentException("Id was not found");
-*/
-      return new IntType();
+      return funcTable.get(id);
    }
 }

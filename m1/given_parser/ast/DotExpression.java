@@ -16,13 +16,17 @@ public class DotExpression
    }
  
    public Type checkType(Hashtable<String,Type> funcTable,
-        Hashtable<String, Hashtable<String,Type>> structTable, Type retType) { 
-      /*if (left.checkType(funcTable, structTable) instanceof StructType) {
-         if () {
-            
-         }
-      }*/
+        Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
+      Hashtable<String, Type> struct;
 
-      return new IntType();
+      if (left.checkType(funcTable, structTable, retType) instanceof StructType)
+       {
+         struct = structTable.get(((StructType)left.checkType(funcTable, structTable, retType)).getStructName());
+         if (struct.get(id) == null) {
+            throw new IllegalArgumentException("Id does not exist in struct");
+         }
+         return struct.get(id);
+      }
+      throw new IllegalArgumentException("DotExpression left is not a struct");
    }
 }
