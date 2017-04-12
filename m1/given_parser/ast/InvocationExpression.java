@@ -33,7 +33,7 @@ public class InvocationExpression
          params = f.getFuncParams();
          funcReturnType = f.getFuncType();
          if (params.size() != arguments.size()) {
-            throw new IllegalArgumentException("Amount of parameters and arguments not the same");
+            throw new IllegalArgumentException("Line #: " + lineNum + "- Amount of parameters and arguments not the same");
          }
          for (int i = 0; i < params.size(); i++) {
             if (params.get(i).getDeclType().getClass() != arguments.get(i).checkType(funcTable, structTable, retType).getClass()) {

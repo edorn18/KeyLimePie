@@ -75,7 +75,7 @@ public class BinaryExpression
             return new BoolType();
          }   
          else {
-            throw new IllegalArgumentException("Left and right expressions should be of type int");
+            throw new IllegalArgumentException("Line #: " + lineNum + "- Left and right expressions should be of type int");
          }   
       }   
       else if (this.operator == Operator.EQ || this.operator == Operator.NE) {
