@@ -21,7 +21,7 @@ public class ConditionalStatement
    public void checkType(Hashtable<String,Type> funcTable,
         Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
       if (!(guard.checkType(funcTable, structTable, retType) instanceof BoolType)) {
-         throw new IllegalArgumentException("Conditional guard must be boolean");
+         throw new IllegalArgumentException("Line #: " + lineNum + "- Conditional guard must be boolean");
       }
       thenBlock.checkType(funcTable, structTable, retType);
       elseBlock.checkType(funcTable, structTable, retType);

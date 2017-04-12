@@ -15,6 +15,7 @@ public class NewExpression
  
    public Type checkType(Hashtable<String,Type> funcTable,
         Hashtable<String, Hashtable<String,Type>> structTable, Type retType) { 
+      System.out.println("Checking NewExpression");
       return new StructType(lineNum, id);
    }
 }

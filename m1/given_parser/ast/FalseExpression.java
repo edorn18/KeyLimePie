@@ -12,6 +12,7 @@ public class FalseExpression
 
    public Type checkType(Hashtable<String,Type> funcTable,
         Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
-      return new IntType();
+      System.out.println("Checking FalseExpression");
+      return new BoolType();
    }
 }

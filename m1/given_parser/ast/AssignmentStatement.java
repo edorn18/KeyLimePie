@@ -17,8 +17,12 @@ public class AssignmentStatement
 
    public void checkType(Hashtable<String,Type> funcTable,
         Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
+      //System.out.println("This is the target's type: " + target.checkType(funcTable, structTable, retType).getClass().getName());
+
 
       if (target.checkType(funcTable, structTable, retType) instanceof IntType) {
+         //System.out.println("This is the source's type: " + source.checkType(funcTable, structTable, retType).getClass().getName());
+
          if (!(source.checkType(funcTable, structTable, retType) instanceof IntType)) {
             throw new IllegalArgumentException("Left and right hand side must be of same type.");
          }
@@ -34,7 +38,9 @@ public class AssignmentStatement
             throw new IllegalArgumentException("Left and right hand side must be of same type.");
          }
       }
-      throw new IllegalArgumentException("Left hand side has invalid type.");
+      else {
+         throw new IllegalArgumentException("Line #: " + lineNum + "- Left hand side has invalid type.");
+      }
    }
 
 }

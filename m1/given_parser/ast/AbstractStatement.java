@@ -3,7 +3,7 @@ package ast;
 public abstract class AbstractStatement
    implements Statement
 {
-   private final int lineNum;
+   protected final int lineNum;
 
    public AbstractStatement(int lineNum)
    {

@@ -59,6 +59,7 @@ public class BinaryExpression
 
    public Type checkType(Hashtable<String,Type> funcTable,
 	Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
+      System.out.println("Checking BinaryExpression");
       if (this.operator == Operator.TIMES || this.operator == Operator.DIVIDE
 	|| this.operator == Operator.PLUS || this.operator == Operator.MINUS) {
          if (left.checkType(funcTable, structTable, retType) instanceof IntType && right.checkType(funcTable, structTable, retType) instanceof IntType) {
@@ -71,7 +72,7 @@ public class BinaryExpression
       else if (this.operator == Operator.LT || this.operator == Operator.GT
 	|| this.operator == Operator.LE || this.operator == Operator.GE) {
          if (left.checkType(funcTable, structTable, retType) instanceof IntType && right.checkType(funcTable, structTable, retType) instanceof IntType) {
-            return new IntType();
+            return new BoolType();
          }   
          else {
             throw new IllegalArgumentException("Left and right expressions should be of type int");

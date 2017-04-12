@@ -22,11 +22,19 @@ public class Program
    }
 
    public void printAll() {
-      printTypes();
-      printDecls();
-      printFuncs();
+      //printTypes();
+      //printDecls();
+      //printFuncs();
       makeSymbolTables();
       checkForMain();
+      try {
+         System.out.println("Running type checking...");
+         checkType();
+         System.out.println("Finished type checkin successfully with no errors");
+      }
+      catch (Exception e) {
+         System.out.println(e.getMessage());
+      }
    }
 
    public void makeSymbolTables() {
@@ -51,11 +59,13 @@ public class Program
 
       structTable = new Hashtable<String, Hashtable<String,Type>>();
       for (int i = 0; i < types.size(); i++) {
-         System.out.println("Adding a struct");
+         //System.out.println("Adding a struct");
          fieldsTable = new Hashtable<String,Type>();
          fieldsList = types.get(i).getFields();
          for (int j = 0; j < fieldsList.size(); j++) {
-            fieldsTable.put(fieldsList.get(j).getDeclName(), decls.get(j).getDeclType());
+            fieldsTable.put(fieldsList.get(j).getDeclName(), fieldsList.get(j).getDeclType());
+            //System.out.println("This is id in struct followed by its type");
+            //System.out.println(fieldsList.get(j).getDeclName() + " " + decls.get(j).getDeclType().getClass().getName());
          }
          structTable.put(types.get(i).getTypeName(), fieldsTable);
       }
@@ -68,7 +78,7 @@ public class Program
 
       funcTable = new Hashtable<String, Hashtable<String, Type>>();
       for (int i = 0; i < funcs.size(); i++) {
-         System.out.println("Adding a function");
+         //System.out.println("Adding a function");
          globalClone = (Hashtable<String,Type>) globalTable.clone();
          paramList = funcs.get(i).getFunctionParams();
          localList = funcs.get(i).getFunctionLocals();
@@ -79,10 +89,10 @@ public class Program
             globalClone.put(localList.get(j).getDeclName(), localList.get(j).getDeclType());
          }
          funcTable.put(funcs.get(i).getFunctionName(), globalClone);
-         System.out.println("Here is the global table");
-         System.out.println(globalTable);
-         System.out.println("Here is the function table");
-         System.out.println(globalClone);
+         //System.out.println("Here is the global table");
+         //System.out.println(globalTable);
+         //System.out.println("Here is the function table");
+         //System.out.println(globalClone);
       }
    }
 

@@ -19,14 +19,21 @@ public class DotExpression
         Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
       Hashtable<String, Type> struct;
 
+      System.out.println("Checking DotExpression");
       if (left.checkType(funcTable, structTable, retType) instanceof StructType)
        {
+         //System.out.println("returned from checkType");
          struct = structTable.get(((StructType)left.checkType(funcTable, structTable, retType)).getStructName());
          if (struct.get(id) == null) {
             throw new IllegalArgumentException("Id does not exist in struct");
          }
+         //System.out.println("This is the struct table");
+         //System.out.println(struct);
+         //System.out.println("This is the id: " + id);
+         //System.out.println("This is id type from the struct: " + struct.get(id).getClass().getName());
          return struct.get(id);
       }
-      throw new IllegalArgumentException("DotExpression left is not a struct");
+      System.out.println("This is left type: " + left.checkType(funcTable, structTable, retType).getClass());
+      throw new IllegalArgumentException("Line #: " + lineNum + "- DotExpression left is not a struct");
    }
 }

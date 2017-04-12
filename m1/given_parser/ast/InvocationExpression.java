@@ -24,6 +24,7 @@ public class InvocationExpression
       List<Declaration> params;
       Type funcReturnType;
 
+      System.out.println("Checking InvocationExpression");
       if (funcTable.get(name) == null) {
          throw new IllegalArgumentException("Call to function does not exist");
       }
@@ -36,7 +37,9 @@ public class InvocationExpression
          }
          for (int i = 0; i < params.size(); i++) {
             if (params.get(i).getDeclType().getClass() != arguments.get(i).checkType(funcTable, structTable, retType).getClass()) {
-               throw new IllegalArgumentException("Argument and parameter type do not match");
+               if (!(params.get(i).getDeclType() instanceof StructType && arguments.get(i).checkType(funcTable, structTable, retType) instanceof NullType)) {
+               throw new IllegalArgumentException("Line #: " + lineNum + "- Argument and parameter type do not match");
+               }
             }
          }
          return funcReturnType;

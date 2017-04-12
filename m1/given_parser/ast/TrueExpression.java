@@ -12,6 +12,7 @@ public class TrueExpression
 
    public Type checkType(Hashtable<String,Type> funcTable,
         Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
+      System.out.println("Checking TrueExpression");
       return new BoolType();
    } 
 }
