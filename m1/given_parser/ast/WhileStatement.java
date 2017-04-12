@@ -23,4 +23,8 @@ public class WhileStatement
       body.checkType(funcTable, structTable, retType);
    }
 
+   public boolean checkReturn(Type retType) {
+      return false;
+   }
+
 }

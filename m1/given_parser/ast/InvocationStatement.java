@@ -18,4 +18,8 @@ public class InvocationStatement
         Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
       expression.checkType(funcTable, structTable, retType);
    }
+
+   public boolean checkReturn(Type retType) {
+      return false;
+   }
 }

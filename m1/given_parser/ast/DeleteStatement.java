@@ -19,4 +19,8 @@ public class DeleteStatement
          throw new IllegalArgumentException("Delete expression must be a struct or null");
       }
    }
+
+   public boolean checkReturn(Type retType) {
+      return false;
+   }
 }

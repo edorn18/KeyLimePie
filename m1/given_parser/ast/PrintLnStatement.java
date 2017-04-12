@@ -18,4 +18,8 @@ public class PrintLnStatement
          throw new IllegalArgumentException("println requires an integer argument");
       }
    }
+
+   public boolean checkReturn(Type retType) {
+      return false;
+   }
 }

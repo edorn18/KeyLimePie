@@ -59,7 +59,7 @@ public class BinaryExpression
 
    public Type checkType(Hashtable<String,Type> funcTable,
 	Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
-      System.out.println("Checking BinaryExpression");
+//      System.out.println("Checking BinaryExpression");
       if (this.operator == Operator.TIMES || this.operator == Operator.DIVIDE
 	|| this.operator == Operator.PLUS || this.operator == Operator.MINUS) {
          if (left.checkType(funcTable, structTable, retType) instanceof IntType && right.checkType(funcTable, structTable, retType) instanceof IntType) {

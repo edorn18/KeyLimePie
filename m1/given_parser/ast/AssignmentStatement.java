@@ -43,4 +43,8 @@ public class AssignmentStatement
       }
    }
 
+   public boolean checkReturn(Type retType) {
+      return false;
+   }
+
 }

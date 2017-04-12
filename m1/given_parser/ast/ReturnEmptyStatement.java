@@ -15,4 +15,8 @@ public class ReturnEmptyStatement
          throw new IllegalArgumentException("Line #: " + lineNum + "- Function return type is not void");
       } 
    }
+
+   public boolean checkReturn(Type retType) {
+      return true;
+   }
 }

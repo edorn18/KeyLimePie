@@ -29,16 +29,6 @@ public class Function
       return name;
    }
 
-/*
-   public List<Type> getFunctionParamsType() {
-      List<Type> types;
-      for (int i = 0; i < params.size(); i++) {
-         types.add(params.get(i).getDeclType());
-      }
-      return types;
-   }
-*/
-
    public Type getFunctionRetType() {
       return retType;
    }
@@ -55,6 +45,9 @@ public class Function
       this.funcTable = funcTable;
       this.structTable = structTable;
       body.checkType((this.funcTable).get(name), this.structTable, retType);
+      if (body.checkReturn(retType) == false) {
+         throw new IllegalArgumentException("Function " + name + " does not return correctly");
+      }
    }
 
 }

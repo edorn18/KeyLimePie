@@ -26,11 +26,13 @@ public class Program
       //printDecls();
       //printFuncs();
       makeSymbolTables();
-      checkForMain();
       try {
+         System.out.println("Checking for main...");
+         checkForMain();
+         System.out.println("Successfully found main function");
          System.out.println("Running type checking...");
          checkType();
-         System.out.println("Finished type checkin successfully with no errors");
+         System.out.println("Finished type checking successfully with no errors");
       }
       catch (Exception e) {
          System.out.println(e.getMessage());
@@ -98,7 +100,7 @@ public class Program
 
    public void checkForMain() {
       if (funcTable.get("main") == null) {
-         System.out.println("There is no main\n");
+         throw new IllegalArgumentException("No main function was found");
       }
    }
 

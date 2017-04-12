@@ -18,4 +18,8 @@ public class ReturnStatement
          throw new IllegalArgumentException("Line #: " + lineNum + "- Expression does not match return type of function");
       } 
    }
+
+   public boolean checkReturn(Type retType) {
+      return true;   
+   }
 }

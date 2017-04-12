@@ -24,7 +24,7 @@ public class InvocationExpression
       List<Declaration> params;
       Type funcReturnType;
 
-      System.out.println("Checking InvocationExpression");
+//      System.out.println("Checking InvocationExpression");
       if (funcTable.get(name) == null) {
          throw new IllegalArgumentException("Call to function does not exist");
       }

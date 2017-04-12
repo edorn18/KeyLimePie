@@ -19,7 +19,7 @@ public class DotExpression
         Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
       Hashtable<String, Type> struct;
 
-      System.out.println("Checking DotExpression");
+    //  System.out.println("Checking DotExpression");
       if (left.checkType(funcTable, structTable, retType) instanceof StructType)
        {
          //System.out.println("returned from checkType");

@@ -15,7 +15,7 @@ public class IdentifierExpression
 
    public Type checkType(Hashtable<String,Type> funcTable,
         Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
-      System.out.println("Checking IdentifierExpression");
+      //System.out.println("Checking IdentifierExpression");
       if (funcTable.get(id) == null) {
          throw new IllegalArgumentException("Id was not found");
       }

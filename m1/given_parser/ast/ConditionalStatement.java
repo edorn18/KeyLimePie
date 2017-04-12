@@ -26,4 +26,11 @@ public class ConditionalStatement
       thenBlock.checkType(funcTable, structTable, retType);
       elseBlock.checkType(funcTable, structTable, retType);
    }
+
+   public boolean checkReturn(Type retType) {
+      if (thenBlock.checkReturn(retType) && elseBlock.checkReturn(retType)) {
+         return true;
+      }
+      return false;
+   }
 }

@@ -15,7 +15,7 @@ public class IntegerExpression
 
    public Type checkType(Hashtable<String,Type> funcTable,
         Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
-      System.out.println("Checking UnaryExpression");
+    //  System.out.println("Checking UnaryExpression");
       return new IntType();
    } 
 }

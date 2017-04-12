@@ -26,4 +26,13 @@ public class BlockStatement
          statements.get(i).checkType(funcTable, structTable, retType);
       }
    }
+
+   public boolean checkReturn(Type retType) {
+      for (int i = 0; i < statements.size(); i++) {
+         if (statements.get(i).checkReturn(retType)) {
+            return true;
+         }
+      }
+      return false;
+   }
 }
