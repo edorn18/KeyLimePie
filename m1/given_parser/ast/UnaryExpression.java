@@ -32,6 +32,12 @@ public class UnaryExpression
       }
    }
 
+   public Type checkType(Hashtable<String,Type> funcTable,
+        Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
+      return new IntType();
+   }
+
+/*
    public Type checkType(Hashtable<String, Hashtable<String,Type>> funcTable,
         Hashtable<String, Hashtable<String,Type>> structTable) {
       if (this.operator == Operator.NOT) {
@@ -52,7 +58,7 @@ public class UnaryExpression
       }
       throw new IllegalArgumentException("Invalid operator");
    }
-
+*/
    private static final String NOT_OPERATOR = "!";
    private static final String MINUS_OPERATOR = "-";
 

@@ -13,11 +13,10 @@ public class DeleteStatement
       this.expression = expression;
    }
 
-   public Type checkType(Hashtable<String, Hashtable<String,Type>> funcTable,
-        Hashtable<String, Hashtable<String,Type>> structTable) {
-      if (expression.checkType(funcTable, structTable) instanceof StructType) {
-         return new NullType();
+   public void checkType(Hashtable<String,Type> funcTable,
+        Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
+      if (!(expression.checkType(funcTable, structTable, retType) instanceof StructType || expression.checkType(funcTable, structTable, retType) instanceof NullType)) {
+         throw new IllegalArgumentException("Delete expression must be a struct or null");
       }
-      throw new IllegalArgumentException("Expression must be a struct");
    }
 }

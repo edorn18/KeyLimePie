@@ -10,8 +10,8 @@ public class FalseExpression
       super(lineNum);
    }
 
-   public Type checkType(Hashtable<String, Hashtable<String,Type>> funcTable,
-        Hashtable<String, Hashtable<String,Type>> structTable) {
+   public Type checkType(Hashtable<String,Type> funcTable,
+        Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
       return new IntType();
    }
 }

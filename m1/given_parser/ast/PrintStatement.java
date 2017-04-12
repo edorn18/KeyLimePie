@@ -13,11 +13,9 @@ public class PrintStatement
       this.expression = expression;
    }
   
-   public Type checkType(Hashtable<String, Hashtable<String,Type>> funcTable,
-        Hashtable<String, Hashtable<String,Type>> structTable) { 
-      if (expression.checkType(funcTable, structTable) instanceof IntType) {
-         return new IntType();
+   public void checkType(Hashtable<String,Type> funcTable, Hashtable<String, Hashtable<String,Type>> structTable, Type retType) { 
+      if (!(expression.checkType(funcTable, structTable, retType) instanceof IntType)) {
+         throw new IllegalArgumentException("print requires an integer argument");
       }
-      throw new IllegalArgumentException("print requires an integer argument");
    }
 }

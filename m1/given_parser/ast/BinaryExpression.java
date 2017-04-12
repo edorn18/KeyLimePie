@@ -51,7 +51,13 @@ public class BinaryExpression
             throw new IllegalArgumentException();
       }
    }
-   
+
+   public Type checkType(Hashtable<String,Type> funcTable,
+        Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
+      return new IntType();
+   }
+
+/*   
    public Type checkType(Hashtable<String, Hashtable<String,Type>> funcTable,
         Hashtable<String, Hashtable<String,Type>> structTable) {
       if (this.operator == Operator.TIMES || this.operator == Operator.DIVIDE
@@ -93,6 +99,7 @@ public class BinaryExpression
       }
       throw new IllegalArgumentException("Invalid operator");
    }
+*/
 
    private static final String TIMES_OPERATOR = "*";
    private static final String DIVIDE_OPERATOR = "/";

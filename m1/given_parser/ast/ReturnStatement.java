@@ -13,8 +13,9 @@ public class ReturnStatement
       this.expression = expression;
    }
 
-   public Type checkType(Hashtable<String, Hashtable<String,Type>> funcTable,
-        Hashtable<String, Hashtable<String,Type>> structTable) {
-      return new IntType();
+   public void checkType(Hashtable<String,Type> funcTable, Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
+      if (!(expression.checkType(funcTable, structTable, retType).getClass().equals(retType.getClass()))) {
+         throw new IllegalArgumentException("Expression does not match return type of function");
+      } 
    }
 }

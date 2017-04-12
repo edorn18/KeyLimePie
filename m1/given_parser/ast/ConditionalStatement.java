@@ -18,12 +18,10 @@ public class ConditionalStatement
       this.elseBlock = elseBlock;
    }
 
-   public Type checkType(Hashtable<String, Hashtable<String,Type>> funcTable,
-        Hashtable<String, Hashtable<String,Type>> structTable) {
-      if (guard.checkType(funcTable, structTable) instanceof BoolType) {
-         return new BoolType();
+   public void checkType(Hashtable<String,Type> funcTable,
+        Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
+      if (!(guard.checkType(funcTable, structTable, retType) instanceof BoolType)) {
+         throw new IllegalArgumentException("Conditional guard must be boolean");
       }
-
-      throw new IllegalArgumentException();
    }
 }

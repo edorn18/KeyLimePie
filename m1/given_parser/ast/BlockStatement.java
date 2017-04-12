@@ -20,8 +20,10 @@ public class BlockStatement
       return new BlockStatement(-1, new ArrayList<>());
    }
 
-   public Type checkType(Hashtable<String, Hashtable<String,Type>> funcTable,
-        Hashtable<String, Hashtable<String,Type>> structTable) {
-      return new IntType();
+   public void checkType(Hashtable<String,Type> funcTable,
+        Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
+      for (int i = 0; i < statements.size(); i++) {
+         statements.get(i).checkType(funcTable, structTable, retType);
+      }
    }
 }

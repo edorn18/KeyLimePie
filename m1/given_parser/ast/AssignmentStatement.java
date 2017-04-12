@@ -15,8 +15,9 @@ public class AssignmentStatement
       this.source = source;
    }
 
-   public Type checkType(Hashtable<String, Hashtable<String,Type>> funcTable,
-        Hashtable<String, Hashtable<String,Type>> structTable) {
+   public void checkType(Hashtable<String,Type> funcTable,
+        Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
+/*
       if (target.checkType(funcTable, structTable) instanceof IntType) {
          if (source.checkType(funcTable, structTable) instanceof IntType) {
             return new IntType();
@@ -44,5 +45,8 @@ public class AssignmentStatement
          }
       }
       throw new IllegalArgumentException("Left hand side has invalid type.");
+      */
+
    }
+
 }

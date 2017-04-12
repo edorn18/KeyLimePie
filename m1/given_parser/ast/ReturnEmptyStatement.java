@@ -9,9 +9,10 @@ public class ReturnEmptyStatement
    {
       super(lineNum);
    }
-  
-   public Type checkType(Hashtable<String, Hashtable<String,Type>> funcTable,
-        Hashtable<String, Hashtable<String,Type>> structTable) { 
-      return new IntType();
+
+   public void checkType(Hashtable<String,Type> funcTable, Hashtable<String, Hashtable<String,Type>> structTable, Type retType) { 
+      if (!(retType instanceof BoolType)) {
+         throw new IllegalArgumentException("Function return type is not void");
+      } 
    }
 }
