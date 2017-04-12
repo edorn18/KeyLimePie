@@ -23,5 +23,7 @@ public class ConditionalStatement
       if (!(guard.checkType(funcTable, structTable, retType) instanceof BoolType)) {
          throw new IllegalArgumentException("Conditional guard must be boolean");
       }
+      thenBlock.checkType(funcTable, structTable, retType);
+      elseBlock.checkType(funcTable, structTable, retType);
    }
 }

@@ -20,6 +20,7 @@ public class WhileStatement
       if (!(guard.checkType(funcTable, structTable, retType) instanceof BoolType)) {
          throw new IllegalArgumentException("Guard does not evaluate to bool type");
       }
+      body.checkType(funcTable, structTable, retType);
    }
 
 }
