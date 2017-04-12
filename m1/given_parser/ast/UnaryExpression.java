@@ -56,4 +56,14 @@ public class UnaryExpression
             throw new IllegalArgumentException("Operand does should evaluate to int type");
          }
       }
-      throw new IllegalArgumentException("Invalid 
+      throw new IllegalArgumentException("Invalid operator");
+   }
+
+   private static final String NOT_OPERATOR = "!";
+   private static final String MINUS_OPERATOR = "-";
+
+   public static enum Operator
+   {
+      NOT, MINUS
+   }
+}
