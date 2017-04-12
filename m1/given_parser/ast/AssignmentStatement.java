@@ -34,4 +34,7 @@ public class AssignmentStatement
             throw new IllegalArgumentException("Left and right hand side must be of same type.");
          }
       }
-      throw new Il
+      throw new IllegalArgumentException("Left hand side has invalid type.");
+   }
+
+}

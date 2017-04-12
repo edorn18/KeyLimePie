@@ -109,4 +109,12 @@ public class BinaryExpression
    private static final String GT_OPERATOR = ">";
    private static final String GE_OPERATOR = ">=";
    private static final String EQ_OPERATOR = "==";
-   private s
+   private static final String NE_OPERATOR = "!=";
+   private static final String AND_OPERATOR = "&&";
+   private static final String OR_OPERATOR = "||";
+
+   public static enum Operator
+   {
+      TIMES, DIVIDE, PLUS, MINUS, LT, GT, LE, GE, EQ, NE, AND, OR
+   }
+}

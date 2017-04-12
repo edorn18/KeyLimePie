@@ -24,4 +24,9 @@ public class LvalueDot
          }      
       }
       else {
-         throw new IllegalArgumentException("Left Expression must b
+         throw new IllegalArgumentException("Left Expression must be of type struct.");
+      }
+
+      return structTable.get(((StructType)left).getStructName()).get(id);
+   }
+}

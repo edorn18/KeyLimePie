@@ -20,3 +20,5 @@ public class LvalueId
          throw new IllegalArgumentException("Id " + id  + " does not exist.");
       }
       return funcTable.get(id);
+   }
+}

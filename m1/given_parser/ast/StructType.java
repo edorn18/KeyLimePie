@@ -12,4 +12,7 @@ public class StructType
       this.name = name;
    }
 
- 
+   public String getStructName() {
+      return name;
+   }
+}
