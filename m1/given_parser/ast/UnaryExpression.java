@@ -32,16 +32,16 @@ public class UnaryExpression
       }
    }
 
-   public Type checkType(Hashtable<String,Type> funcTable,
+/*   public Type checkType(Hashtable<String,Type> funcTable,
         Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
       return new IntType();
-   }
+   }*/
 
-/*
-   public Type checkType(Hashtable<String, Hashtable<String,Type>> funcTable,
-        Hashtable<String, Hashtable<String,Type>> structTable) {
+
+   public Type checkType(Hashtable<String,Type> funcTable,
+	Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
       if (this.operator == Operator.NOT) {
-         if (operand.checkType(funcTable, structTable) instanceof BoolType) {
+         if (operand.checkType(funcTable, structTable, retType) instanceof BoolType) {
             return new BoolType();
          }
          else {
@@ -49,21 +49,11 @@ public class UnaryExpression
          }
       }
       else if (this.operator == Operator.MINUS) {
-         if (operand.checkType(funcTable, structTable) instanceof IntType) {
+         if (operand.checkType(funcTable, structTable, retType) instanceof IntType) {
             return new IntType();
          }
          else {
             throw new IllegalArgumentException("Operand does should evaluate to int type");
          }
       }
-      throw new IllegalArgumentException("Invalid operator");
-   }
-*/
-   private static final String NOT_OPERATOR = "!";
-   private static final String MINUS_OPERATOR = "-";
-
-   public static enum Operator
-   {
-      NOT, MINUS
-   }
-}
+      throw new IllegalArgumentException("Invalid 

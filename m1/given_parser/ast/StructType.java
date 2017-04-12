@@ -11,4 +11,5 @@ public class StructType
       this.lineNum = lineNum;
       this.name = name;
    }
-}
+
+ 

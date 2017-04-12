@@ -17,36 +17,21 @@ public class AssignmentStatement
 
    public void checkType(Hashtable<String,Type> funcTable,
         Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
-/*
-      if (target.checkType(funcTable, structTable) instanceof IntType) {
-         if (source.checkType(funcTable, structTable) instanceof IntType) {
-            return new IntType();
-         }
-         else {
-            throw new IllegalArgumentException("Left and right hand side must be of same type.");
-         }
-      }
-      else if (target.checkType(funcTable, structTable) instanceof BoolType) {
-         if (source.checkType(funcTable, structTable) instanceof BoolType) {
-            return new BoolType();
-         }
-         else {
-            throw new IllegalArgumentException("Left and right hand side must be of same type.");
-         }
-      }
-      else if (target.checkType(funcTable, structTable) instanceof StructType) {
-         if (source.checkType(funcTable, structTable) instanceof StructType ||
-	  source.checkType(funcTable, structTable) instanceof NullType) {
-//            return new StructType(lineNum, );
-            return new IntType();
-         }
-         else {
-            throw new IllegalArgumentException("Left and right hand side must be of same type.");
-         }
-      }
-      throw new IllegalArgumentException("Left hand side has invalid type.");
-      */
 
-   }
-
-}
+      if (target.checkType(funcTable, structTable, retType) instanceof IntType) {
+         if (!(source.checkType(funcTable, structTable, retType) instanceof IntType)) {
+            throw new IllegalArgumentException("Left and right hand side must be of same type.");
+         }
+      }
+      else if (target.checkType(funcTable, structTable, retType) instanceof BoolType) {
+         if (!(source.checkType(funcTable, structTable, retType) instanceof BoolType)) {
+            throw new IllegalArgumentException("Left and right hand side must be of same type.");
+         }
+      }
+      else if (target.checkType(funcTable, structTable, retType) instanceof StructType) {
+         if (!(source.checkType(funcTable, structTable, retType) instanceof StructType) ||
+	  !(source.checkType(funcTable, structTable, retType) instanceof NullType)) {
+            throw new IllegalArgumentException("Left and right hand side must be of same type.");
+         }
+      }
+      throw new Il

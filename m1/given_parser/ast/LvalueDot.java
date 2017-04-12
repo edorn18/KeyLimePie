@@ -16,8 +16,12 @@ public class LvalueDot
       this.id = id;
    }
 
-   public Type checkType(Hashtable<String, Hashtable<String,Type>> funcTable,
-        Hashtable<String, Hashtable<String,Type>> structTable) {
-      return new IntType();
-   }
-}
+   public Type checkType(Hashtable<String,Type> funcTable,
+        Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
+      if (left.checkType(funcTable, structTable, retType) instanceof StructType) {
+         if (structTable.get(((StructType)left).getStructName()).get(id) == null) {
+            throw new IllegalArgumentException("Id field '" + id  + "' does not exist in struct.");
+         }      
+      }
+      else {
+         throw new IllegalArgumentException("Left Expression must b
