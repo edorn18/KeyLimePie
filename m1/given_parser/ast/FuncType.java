@@ -13,4 +13,12 @@ public class FuncType
       this.params = params;
       this.retType = retType;
    }
+
+   public List<Declaration> getFuncParams() {
+      return params;
+   }
+
+   public Type getFuncType() {
+      return retType;
+   }
 }
