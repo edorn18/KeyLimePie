@@ -1,6 +1,7 @@
 package ast;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class Program
@@ -13,7 +14,7 @@ public class Program
    private Hashtable<String, Hashtable<String,Type>> structTable;
    private Hashtable<String, Hashtable<String,Type>> funcTable;
 
-   private List<Block> allBlockList;
+   private List<Block> allBlockList = new ArrayList<Block>();
 
    public Program(List<TypeDeclaration> types, List<Declaration> decls,
       List<Function> funcs)
@@ -33,7 +34,7 @@ public class Program
          checkForMain();
          System.out.println("Successfully found main function");
          System.out.println("Running type checking...");
-         checkType();
+         //checkType();
          System.out.println("Finished type checking successfully with no errors");
       }
       catch (Exception e) {
@@ -46,7 +47,15 @@ public class Program
       for (int i = 0; i < funcs.size(); i++) {
          funcs.get(i).buildCFG(allBlockList);
       }
+
       for (int i = 0; i < allBlockList.size() ; i++) {
+         System.out.println("Block " + allBlockList.get(i).getLabel());
+         System.out.print("Links to block(s): ");
+         for (int j = 0; j < allBlockList.get(i).getList().size(); j++) {
+            System.out.print(allBlockList.get(i).getList().get(j).getLabel() + ", ");
+         }
+         System.out.println();
+         System.out.println();
          // block i prints block i's links
       }
    }

@@ -29,6 +29,23 @@ public class WhileStatement
    }
 
    public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock) {
-      return curBlock;
+      Block trueBlock;
+      Block falseBlock;
+      Block tempBlock;
+
+      trueBlock = new Block(allBlockList.size());
+      allBlockList.add(trueBlock);
+
+      tempBlock = body.buildBlock(allBlockList, trueBlock, endBlock);
+      tempBlock.addBlock(trueBlock);
+
+      falseBlock = new Block(allBlockList.size());
+      allBlockList.add(falseBlock);
+      tempBlock.addBlock(falseBlock);
+
+      curBlock.addBlock(trueBlock);
+      curBlock.addBlock(falseBlock);
+
+      return falseBlock;
    }
 }

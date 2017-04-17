@@ -36,6 +36,30 @@ public class ConditionalStatement
    }
 
    public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock) {
-      return curBlock;
+      Block newThenBlock;
+      Block newElseBlock;
+      Block newJoinBlock;
+      Block tempThenBlock;
+      Block tempElseBlock;
+
+      newThenBlock = new Block(allBlockList.size());
+      allBlockList.add(newThenBlock);
+      newElseBlock = new Block(allBlockList.size());
+      allBlockList.add(newElseBlock);
+
+      curBlock.addBlock(newThenBlock);
+      curBlock.addBlock(newElseBlock);
+
+      tempThenBlock = thenBlock.buildBlock(allBlockList, newThenBlock, endBlock);
+      tempElseBlock = elseBlock.buildBlock(allBlockList, newElseBlock, endBlock);
+
+      newJoinBlock = new Block(allBlockList.size());
+     
+      tempThenBlock.addBlock(newJoinBlock);
+      tempElseBlock.addBlock(newJoinBlock);
+
+      allBlockList.add(newJoinBlock);
+
+      return newJoinBlock;
    }
 }
