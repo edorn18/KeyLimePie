@@ -21,7 +21,8 @@ public class ReturnEmptyStatement
       return true;
    }
 
-   public void buildBlock(List<Block> allBlockList) {
-
+   public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock) {
+      curBlock.addBlock(endBlock);
+      return endBlock;
    }
 }

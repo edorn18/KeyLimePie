@@ -25,7 +25,7 @@ public class DeleteStatement
       return false;
    }
 
-   public void buildBlock(List<Block> allBlockList) {
-
+   public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock) {
+      return curBlock;
    }
 }

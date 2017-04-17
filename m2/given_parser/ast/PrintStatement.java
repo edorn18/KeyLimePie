@@ -24,8 +24,7 @@ public class PrintStatement
       return false;
    }
 
-   public void buildBlock(List<Block> allBlockList) {
-      Block b = new Block(allBlockList.size());
-      allBlockList.add(b);
+   public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock) {
+      return curBlock;
    }
 }

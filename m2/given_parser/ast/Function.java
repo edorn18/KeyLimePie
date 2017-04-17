@@ -51,7 +51,11 @@ public class Function
    }
 
    public void buildCFG(List<Block> allBlockList) {
-      body.buildBlock(allBlockList);   
+      Block start = new Block(allBlockList.size());
+      allBlockList.add(start);
+      Block end = new Block(allBlockList.size());
+      allBlockList.add(end);
+      body.buildBlock(allBlockList, start, end);   
    }
 
 }
