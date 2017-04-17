@@ -1,6 +1,7 @@
 package ast;
 
 import java.util.Hashtable;
+import java.util.List;
 
 public class ReturnEmptyStatement
    extends AbstractStatement
@@ -18,5 +19,9 @@ public class ReturnEmptyStatement
 
    public boolean checkReturn(Type retType) {
       return true;
+   }
+
+   public void buildBlock(List<Block> allBlockList) {
+
    }
 }

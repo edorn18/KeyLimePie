@@ -13,6 +13,8 @@ public class Program
    private Hashtable<String, Hashtable<String,Type>> structTable;
    private Hashtable<String, Hashtable<String,Type>> funcTable;
 
+   private List<Block> allBlockList;
+
    public Program(List<TypeDeclaration> types, List<Declaration> decls,
       List<Function> funcs)
    {
@@ -36,6 +38,16 @@ public class Program
       }
       catch (Exception e) {
          System.out.println(e.getMessage());
+      }
+      printCFG();
+   }
+
+   public void printCFG() {
+      for (int i = 0; i < funcs.size(); i++) {
+         funcs.get(i).buildCFG(allBlockList);
+      }
+      for (int i = 0; i < allBlockList.size() ; i++) {
+         // block i prints block i's links
       }
    }
 

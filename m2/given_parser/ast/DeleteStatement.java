@@ -1,6 +1,7 @@
 package ast;
 
 import java.util.Hashtable;
+import java.util.List;
 
 public class DeleteStatement
    extends AbstractStatement
@@ -22,5 +23,9 @@ public class DeleteStatement
 
    public boolean checkReturn(Type retType) {
       return false;
+   }
+
+   public void buildBlock(List<Block> allBlockList) {
+
    }
 }

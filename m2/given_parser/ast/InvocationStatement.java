@@ -22,4 +22,8 @@ public class InvocationStatement
    public boolean checkReturn(Type retType) {
       return false;
    }
+
+   public void buildBlock(List<Block> allBlockList) {
+
+   }
 }

@@ -35,4 +35,10 @@ public class BlockStatement
       }
       return false;
    }
+
+   public void buildBlock(List<Block> allBlockList) {
+      for (int i = 0; i < statements.size(); i++) {
+         statements.get(i).buildBlock(allBlockList);
+      }
+   }
 }

@@ -1,6 +1,7 @@
 package ast;
 
 import java.util.Hashtable;
+import java.util.List;
 
 public class ConditionalStatement
    extends AbstractStatement
@@ -32,5 +33,9 @@ public class ConditionalStatement
          return true;
       }
       return false;
+   }
+
+   public void buildBlock(List<Block> allBlockList) {
+
    }
 }

@@ -1,6 +1,7 @@
 package ast;
 
 import java.util.Hashtable;
+import java.util.List;
 
 public class AssignmentStatement
    extends AbstractStatement
@@ -45,6 +46,10 @@ public class AssignmentStatement
 
    public boolean checkReturn(Type retType) {
       return false;
+   }
+
+   public void buildBlock(List<Block> allBlockList) {
+      
    }
 
 }

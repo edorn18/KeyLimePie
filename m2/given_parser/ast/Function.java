@@ -50,4 +50,8 @@ public class Function
       }
    }
 
+   public void buildCFG(List<Block> allBlockList) {
+      body.buildBlock(allBlockList);   
+   }
+
 }

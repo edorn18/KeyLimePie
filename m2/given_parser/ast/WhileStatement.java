@@ -1,6 +1,7 @@
 package ast;
 
 import java.util.Hashtable;
+import java.util.List;
 
 public class WhileStatement
    extends AbstractStatement
@@ -27,4 +28,7 @@ public class WhileStatement
       return false;
    }
 
+   public void buildBlock(List<Block> allBlockList) {
+
+   }
 }
