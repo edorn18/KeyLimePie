@@ -53,13 +53,22 @@ public class ConditionalStatement
       tempThenBlock = thenBlock.buildBlock(allBlockList, newThenBlock, endBlock);
       tempElseBlock = elseBlock.buildBlock(allBlockList, newElseBlock, endBlock);
 
-      newJoinBlock = new Block(allBlockList.size());
-     
-      tempThenBlock.addBlock(newJoinBlock);
-      tempElseBlock.addBlock(newJoinBlock);
+      if (tempThenBlock == endBlock && tempElseBlock == endBlock) {
+         return endBlock;
+      }
+      else {
+         newJoinBlock = new Block(allBlockList.size());
+         
+         if (tempThenBlock != endBlock) {
+            tempThenBlock.addBlock(newJoinBlock);
+         }
+         if (tempElseBlock != endBlock) {
+            tempElseBlock.addBlock(newJoinBlock);
+         }
 
-      allBlockList.add(newJoinBlock);
+         allBlockList.add(newJoinBlock);
 
-      return newJoinBlock;
+         return newJoinBlock;
+      }
    }
 }

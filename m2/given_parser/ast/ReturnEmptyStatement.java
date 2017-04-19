@@ -22,6 +22,7 @@ public class ReturnEmptyStatement
    }
 
    public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock) {
+      System.out.println("inside this return empty statement function");
       curBlock.addBlock(endBlock);
       return endBlock;
    }

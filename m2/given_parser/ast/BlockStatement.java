@@ -42,4 +42,13 @@ public class BlockStatement
       }
       return curBlock;
    }
+
+   public boolean isEmpty() {
+      if (statements.size() == 0) {
+         return true;
+      }
+      else {
+         return false;
+      }
+   }
 }

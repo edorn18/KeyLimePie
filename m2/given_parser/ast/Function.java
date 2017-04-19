@@ -55,7 +55,12 @@ public class Function
       allBlockList.add(start);
       Block end = new Block(allBlockList.size());
       allBlockList.add(end);
-      body.buildBlock(allBlockList, start, end);   
+      if (((BlockStatement)body).isEmpty()) {
+         start.addBlock(end);
+      }
+      else {
+         body.buildBlock(allBlockList, start, end); 
+      }  
    }
 
 }
