@@ -22,7 +22,8 @@ public class DotExpression
     //  System.out.println("Checking DotExpression");
       if (left.checkType(funcTable, structTable, retType) instanceof StructType)
        {
-         struct = structTable.get(((StructType)(left.checkType(funcTable, structTable, retType))).getStructName());
+         //System.out.println("returned from checkType");
+         struct = structTable.get(((StructType)left.checkType(funcTable, structTable, retType)).getStructName());
          if (struct.get(id) == null) {
             throw new IllegalArgumentException("Line #: " + lineNum + "- Id does not exist in struct");
          }
