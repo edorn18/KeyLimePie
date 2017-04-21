@@ -19,7 +19,7 @@ public class LvalueDot
    public Type checkType(Hashtable<String,Type> funcTable,
         Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
       if (left.checkType(funcTable, structTable, retType) instanceof StructType) {
-         if (structTable.get(((StructType)left).getStructName()).get(id) == null) {
+         if (structTable.get(((StructType)(left.checkType(funcTable, structTable, retType))).getStructName()).get(id) == null) {
             throw new IllegalArgumentException("Id field '" + id  + "' does not exist in struct.");
          }      
       }
@@ -27,6 +27,6 @@ public class LvalueDot
          throw new IllegalArgumentException("Left Expression must be of type struct.");
       }
 
-      return structTable.get(((StructType)left).getStructName()).get(id);
+      return structTable.get(((StructType)(left.checkType(funcTable, structTable, retType))).getStructName()).get(id);
    }
 }

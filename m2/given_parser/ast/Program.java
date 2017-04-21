@@ -34,11 +34,12 @@ public class Program
          checkForMain();
          System.out.println("Successfully found main function");
          System.out.println("Running type checking...");
-         //checkType();
+         checkType();
          System.out.println("Finished type checking successfully with no errors");
       }
       catch (Exception e) {
          System.out.println(e.getMessage());
+         System.out.println(e.toString());
       }
       printCFG();
    }
