@@ -39,8 +39,9 @@ public class Program
       }
       catch (Exception e) {
          System.out.println(e.getMessage());
+         System.out.println(e.toString());
       }
-      //printCFG();
+      printCFG();
    }
 
    public void printCFG() {

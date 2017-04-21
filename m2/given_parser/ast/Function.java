@@ -44,12 +44,18 @@ public class Function
    public void checkType(Hashtable<String, Hashtable<String,Type>> funcTable, Hashtable<String, Hashtable<String,Type>> structTable) {
       this.funcTable = funcTable;
       this.structTable = structTable;
-      body.checkType((this.funcTable).get(name), this.structTable, retType);
-      if (body.checkReturn(retType) == false) {
-         throw new IllegalArgumentException("Function " + name + " does not return correctly");
+      if (((BlockStatement)body).isEmpty()) {
+         if (!(retType instanceof VoidType)) {
+            throw new IllegalArgumentException("Function " + name + " does not return correctly");
+         }
+      }
+      else {
+         body.checkType((this.funcTable).get(name), this.structTable, retType);
+         if (body.checkReturn(retType) == false) {
+            throw new IllegalArgumentException("Function " + name + " does not return correctly");
+         }
       }
    }
-
    public void buildCFG(List<Block> allBlockList) {
       Block start = new Block(allBlockList.size());
       allBlockList.add(start);
