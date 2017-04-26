@@ -42,6 +42,14 @@ public class Program
          System.out.println(e.toString());
       }
       printCFG();
+      /*System.out.println("STARTING HERE IN MAIN");
+      Register r1 = new Register(new iType(64));
+      Register r2 = new Register(new iType(8));
+      Register r3 = new Register(new iType(1));
+      
+      System.out.println(r1.getRegName() + " has type " + r1.getRegType().getLLVMTypeName() + ". Register number: " + r1.getRegNum());
+      System.out.println(r2.getRegName() + " has type " + r2.getRegType().getLLVMTypeName() + ". Register number: " + r2.getRegNum());
+      System.out.println(r3.getRegName() + " has type " + r3.getRegType().getLLVMTypeName() + ". Register number: " + r3.getRegNum());*/
    }
 
    public void printCFG() {

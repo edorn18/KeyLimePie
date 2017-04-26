@@ -32,6 +32,7 @@ public class BinaryExpression
          case MINUS_OPERATOR:
             return new BinaryExpression(lineNum, Operator.MINUS, left, right);
          case LT_OPERATOR:
+            
             return new BinaryExpression(lineNum, Operator.LT, left, right);
          case LE_OPERATOR:
             return new BinaryExpression(lineNum, Operator.LE, left, right);
@@ -100,6 +101,27 @@ public class BinaryExpression
       throw new IllegalArgumentException("Invalid operator");
    }
 
+
+//   public Value buildInstruction() {
+      /*switch (operator)
+      {*/
+/*       ArithmeticBoolean(String instrName, LLVMType ty, Value op1, Value op2, Value regResult) */
+        /* case PLUS:
+            Register regLeft = left.buildInstruction(new iType(64), "last used reg num in list");
+            Register regRight = right.buildInstruction();
+            Register regResult = new Register(new iType(64), "%uSomeReg");
+            new ArithmeticBoolean("add", new iType(64), regLeft, regRight, regResult);
+*/
+/*         case AND:
+            Register regLeft = left.buildInstruction();
+            Register regRight = left.buildInstruction();
+            Register regResult = new Register(new iType(1), "%uSomeReg");
+            new ArithmeticBoolean("and", new iType(1), regLeft, regRight, regResult);
+*/
+  /*       default:
+            throw new IllegalArgumentException();
+      }*/
+//   }
 
    private static final String TIMES_OPERATOR = "*";
    private static final String DIVIDE_OPERATOR = "/";

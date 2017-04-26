@@ -4,4 +4,5 @@ package ast;
 
 public interface Instruction
 {
+   public void printInstruction();
 }

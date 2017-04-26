@@ -5,10 +5,29 @@ import java.util.Hashtable;
 public class Register
    implements Value
 {
-   private final String value;
+   private final LLVMType regType;
+//   private final iType regType;
+   private final String regName;
+   private final int regNum;
+   public static int regTracker = 0;
 
-   public Register(int lineNum, String value)
+   public Register(LLVMType regType)
    {   
-      this.value = value;
+      this.regType = regType;
+      this.regNum = regTracker;
+      this.regName = "%u" + regNum;
+      this.regTracker++;
    } 
+
+   public LLVMType getRegType() {
+      return this.regType;
+   } 
+
+   public String getRegName() {
+      return this.regName;
+   }
+
+   public int getRegNum() {
+      return this.regNum;
+   }
 }  
