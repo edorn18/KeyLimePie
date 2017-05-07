@@ -3,6 +3,7 @@ package ast;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.io.PrintWriter;
 
 public class Program
 {
@@ -15,6 +16,8 @@ public class Program
    private Hashtable<String, Hashtable<String,Type>> funcTable;
 
    private List<Block> allBlockList = new ArrayList<Block>();
+   private List<Block> startBlockList = new ArrayList<Block>();
+   private List<Block> endBlockList = new ArrayList<Block>();
 
    public Program(List<TypeDeclaration> types, List<Declaration> decls,
       List<Function> funcs)
@@ -42,19 +45,12 @@ public class Program
          System.out.println(e.toString());
       }
       printCFG();
-      /*System.out.println("STARTING HERE IN MAIN");
-      Register r1 = new Register(new iType(64));
-      Register r2 = new Register(new iType(8));
-      Register r3 = new Register(new iType(1));
-      
-      System.out.println(r1.getRegName() + " has type " + r1.getRegType().getLLVMTypeName() + ". Register number: " + r1.getRegNum());
-      System.out.println(r2.getRegName() + " has type " + r2.getRegType().getLLVMTypeName() + ". Register number: " + r2.getRegNum());
-      System.out.println(r3.getRegName() + " has type " + r3.getRegType().getLLVMTypeName() + ". Register number: " + r3.getRegNum());*/
+      printLlvmFile();
    }
 
    public void printCFG() {
       for (int i = 0; i < funcs.size(); i++) {
-         funcs.get(i).buildCFG(allBlockList);
+         funcs.get(i).buildCFG(allBlockList, startBlockList, endBlockList);
       }
 
       for (int i = 0; i < allBlockList.size() ; i++) {
@@ -82,6 +78,51 @@ public class Program
       }
       for (int i = 0; i < funcs.size(); i++) {
          globalTable.put(funcs.get(i).getFunctionName(), new FuncType(funcs.get(i).getFunctionParams(), funcs.get(i).getFunctionRetType()));  
+      }
+   }
+
+   public void printLlvmFile() {
+      try {
+         PrintWriter outFile = new PrintWriter("test.ll", "UTF-8");
+         int funcCounter = 0;
+         
+         for (int i = 0; i < allBlockList.size(); i++) {
+            if (funcCounter < startBlockList.size() && startBlockList.get(funcCounter) == allBlockList.get(i)) {
+               String funcName = funcs.get(funcCounter).getFunctionName();
+               outFile.print("define ");
+               if (!(funcs.get(funcCounter).getFunctionRetType() instanceof VoidType)) {
+                  outFile.print("i64 ");
+               }
+               else {
+                  outFile.print("void ");
+               }
+               outFile.println("@" + funcName + "()");
+               outFile.println("{");
+               outFile.println("LU" + allBlockList.get(i).getLabel() + ":");
+               allBlockList.get(i).printInstructions(outFile);
+               funcCounter++;
+            }
+            else {
+               outFile.println("LU" + allBlockList.get(i).getLabel() + ":");
+               allBlockList.get(i).printInstructions(outFile);
+            }
+            outFile.println("");
+         }
+
+         /*
+         for (int i = 0; i < startBlockList.size(); i++) {
+            String funcName = funcs.get(funcCounter).getFunctionName();
+            outFile.print("define "); 
+            outFile.println("@" + funcName + "()");
+            outFile.println("{");
+            outFile.println("}");
+            outFile.println("");
+            funcCounter++;
+         }
+         */
+         outFile.close();
+      } catch (Exception e) {
+         System.out.println(e.getMessage());
       }
    }
 

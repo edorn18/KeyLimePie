@@ -1,8 +1,8 @@
 package ast;
 
-//import java.util.Hashtable;
+import java.io.PrintWriter;
 
 public interface Instruction
 {
-   public void printInstruction();
+   public void printInstruction(PrintWriter outFile);
 }

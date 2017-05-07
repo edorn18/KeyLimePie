@@ -6,7 +6,6 @@ public class Register
    implements Value
 {
    private final LLVMType regType;
-//   private final iType regType;
    private final String regName;
    private final int regNum;
    public static int regTracker = 0;
