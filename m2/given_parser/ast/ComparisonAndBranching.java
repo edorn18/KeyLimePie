@@ -2,6 +2,7 @@ package ast;
 
 import java.util.Hashtable;
 import java.util.List;
+import java.io.PrintWriter;
 
 public class ComparisonAndBranching
    implements Instruction
@@ -19,7 +20,6 @@ public class ComparisonAndBranching
       //this.result = result;
    }   
 
-   /*public void printInstr() {
- *
- *    }*/
+   public void printInstruction(PrintWriter outFile) {
+   }
 }

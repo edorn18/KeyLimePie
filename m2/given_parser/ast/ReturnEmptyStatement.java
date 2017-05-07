@@ -12,7 +12,7 @@ public class ReturnEmptyStatement
    }
 
    public void checkType(Hashtable<String,Type> funcTable, Hashtable<String, Hashtable<String,Type>> structTable, Type retType) { 
-      if (!(retType instanceof NullType)) {
+      if (!(retType instanceof VoidType)) {
          throw new IllegalArgumentException("Line #: " + lineNum + "- Function return type is not void");
       } 
    }
@@ -22,7 +22,7 @@ public class ReturnEmptyStatement
    }
 
    public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock) {
-      System.out.println("inside this return empty statement function");
+      //System.out.println("inside this return empty statement function");
       curBlock.addBlock(endBlock);
       return endBlock;
    }
