@@ -56,17 +56,36 @@ public class Function
          }
       }
    }
-   public void buildCFG(List<Block> allBlockList) {
+   public void buildCFG(List<Block> allBlockList, List<Block> startBlockList, List<Block> endBlockList) {
+      Block temp;
       Block start = new Block(allBlockList.size());
       allBlockList.add(start);
+      startBlockList.add(start);
+      buildLLVMFuncStart(start);
       Block end = new Block(allBlockList.size());
       allBlockList.add(end);
+      endBlockList.add(end);
       if (((BlockStatement)body).isEmpty()) {
          start.addBlock(end);
       }
       else {
-         body.buildBlock(allBlockList, start, end); 
+         temp = body.buildBlock(allBlockList, start, end);
+         if (temp != end) {
+            temp.addBlock(end);
+         } 
       }  
+   }
+
+   public void buildLLVMFuncStart(Block start) {
+      if (!(retType instanceof VoidType)) {
+         start.addInstruction(new FuncReturnInstruction(new iType(64)));
+      }
+      for (int i = 0; i < params.size(); i++) {
+         start.addInstruction(new FuncParamInstruction(params.get(i).getDeclName(), new iType(64)));
+      }
+      for (int i = 0; i < locals.size(); i++) {
+         start.addInstruction(new FuncLocalInstruction(locals.get(i).getDeclName(), new iType(64)));
+      }
    }
 
 }

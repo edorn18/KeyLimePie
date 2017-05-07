@@ -28,6 +28,9 @@ public class BlockStatement
    }
 
    public boolean checkReturn(Type retType) {
+      if (retType instanceof VoidType) {
+         return true;
+      }
       for (int i = 0; i < statements.size(); i++) {
          if (statements.get(i).checkReturn(retType)) {
             return true;

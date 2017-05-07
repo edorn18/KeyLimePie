@@ -18,8 +18,4 @@ public class IntegerExpression
     //  System.out.println("Checking UnaryExpression");
       return new IntType();
    } 
-
-   /*public Value buildInstrution(int lastReg) { // returns Immediate
-      
-   }*/
 }

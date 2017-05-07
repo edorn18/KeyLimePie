@@ -25,18 +25,17 @@ public class AssignmentStatement
          //System.out.println("This is the source's type: " + source.checkType(funcTable, structTable, retType).getClass().getName());
 
          if (!(source.checkType(funcTable, structTable, retType) instanceof IntType)) {
-            throw new IllegalArgumentException("Left and right hand side must be of same type.");
+            throw new IllegalArgumentException("Line #: " + lineNum + "Left and right hand side must be of same type.");
          }
       }
       else if (target.checkType(funcTable, structTable, retType) instanceof BoolType) {
          if (!(source.checkType(funcTable, structTable, retType) instanceof BoolType)) {
-            throw new IllegalArgumentException("Left and right hand side must be of same type.");
+            throw new IllegalArgumentException("Line #: " + lineNum + "Left and right hand side must be of same type.");
          }
       }
       else if (target.checkType(funcTable, structTable, retType) instanceof StructType) {
-         if (!(source.checkType(funcTable, structTable, retType) instanceof StructType) ||
-	  !(source.checkType(funcTable, structTable, retType) instanceof NullType)) {
-            throw new IllegalArgumentException("Left and right hand side must be of same type.");
+         if (!(source.checkType(funcTable, structTable, retType) instanceof StructType) && !(source.checkType(funcTable, structTable, retType) instanceof NullType)) {
+            throw new IllegalArgumentException("Line #: " + lineNum + "Left and right hand side must be of same type.");
          }
       }
       else {
