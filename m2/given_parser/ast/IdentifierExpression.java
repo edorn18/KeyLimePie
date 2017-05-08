@@ -1,6 +1,7 @@
 package ast;
 
 import java.util.Hashtable;
+import java.util.List;
 
 public class IdentifierExpression
    extends AbstractExpression
@@ -21,5 +22,15 @@ public class IdentifierExpression
       }
       //System.out.println("This was the type found: " + funcTable.get(id).getClass().getName());
       return funcTable.get(id);
+   }
+
+   public Register buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable) {
+      //instanceof structType
+      //LoadInstruct(new LLVMStructType)
+      //else
+      //LoadInstruct(new iType)
+      //LoadInstruction instr = new LoadInstruction(LLVMType, varName)
+      //curBlock.addInstruction();
+      return null;
    }
 }

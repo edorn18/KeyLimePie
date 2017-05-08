@@ -13,6 +13,8 @@ public class Function
    private final Statement body;
    private Hashtable<String, Hashtable<String,Type>> funcTable;
    private Hashtable<String, Hashtable<String,Type>> structTable;   
+   private Hashtable<String, Type> globalTable;
+   private Hashtable<String, Type> localTable;
 
    public Function(int lineNum, String name, List<Declaration> params,
       Type retType, List<Declaration> locals, Statement body)
@@ -56,7 +58,20 @@ public class Function
          }
       }
    }
-   public void buildCFG(List<Block> allBlockList, List<Block> startBlockList, List<Block> endBlockList) {
+
+   private void makeLocalTable() {
+      localTable = new Hashtable<String,Type>();
+      for (int j = 0; j < params.size(); j++) {
+            localTable.put(params.get(j).getDeclName(), params.get(j).getDeclType());
+      }
+      for (int j = 0; j < locals.size(); j++) {
+            localTable.put(locals.get(j).getDeclName(), locals.get(j).getDeclType());
+      }
+   }
+
+   public void buildCFG(List<Block> allBlockList, List<Block> startBlockList, List<Block> endBlockList, Hashtable<String,Type> gTable) {
+      this.globalTable = gTable;
+      makeLocalTable();
       Block temp;
       Block start = new Block(allBlockList.size());
       allBlockList.add(start);
@@ -69,7 +84,7 @@ public class Function
          start.addBlock(end);
       }
       else {
-         temp = body.buildBlock(allBlockList, start, end);
+         temp = body.buildBlock(allBlockList, start, end, globalTable, localTable);
          if (temp != end) {
             temp.addBlock(end);
          } 
@@ -78,13 +93,28 @@ public class Function
 
    public void buildLLVMFuncStart(Block start) {
       if (!(retType instanceof VoidType)) {
-         start.addInstruction(new FuncReturnInstruction(new iType(64)));
+         if (retType instanceof StructType) {
+            start.addInstruction(new FuncReturnInstruction(new LLVMStructType(((StructType)retType).getStructName())));
+         }
+         else {
+            start.addInstruction(new FuncReturnInstruction(new iType(64)));
+         }
       }
       for (int i = 0; i < params.size(); i++) {
-         start.addInstruction(new FuncParamInstruction(params.get(i).getDeclName(), new iType(64)));
+         if (params.get(i).getDeclType() instanceof StructType) {
+            start.addInstruction(new FuncParamInstruction(params.get(i).getDeclName(), new LLVMStructType(((StructType)(params.get(i).getDeclType())).getStructName())));
+         }
+         else {
+            start.addInstruction(new FuncParamInstruction(params.get(i).getDeclName(), new iType(64)));
+         }
       }
       for (int i = 0; i < locals.size(); i++) {
-         start.addInstruction(new FuncLocalInstruction(locals.get(i).getDeclName(), new iType(64)));
+         if (locals.get(i).getDeclType() instanceof StructType) {
+            start.addInstruction(new FuncLocalInstruction(locals.get(i).getDeclName(), new LLVMStructType(((StructType)(locals.get(i).getDeclType())).getStructName())));
+         }
+         else {
+            start.addInstruction(new FuncLocalInstruction(locals.get(i).getDeclName(), new iType(64)));
+         }
       }
    }
 

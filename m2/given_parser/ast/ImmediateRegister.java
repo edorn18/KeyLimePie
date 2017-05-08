@@ -7,7 +7,7 @@ public class ImmediateRegister
 {
    private final String value;
 
-   public ImmediateRegister(int lineNum, String value)
+   public ImmediateRegister(String value)
    {   
       this.value = value;
    }   

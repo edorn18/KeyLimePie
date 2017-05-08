@@ -1,6 +1,7 @@
 package ast;
 
 import java.util.Hashtable;
+import java.util.List;
 
 public class BinaryExpression
    extends AbstractExpression
@@ -98,6 +99,10 @@ public class BinaryExpression
          }   
       }
       throw new IllegalArgumentException("Invalid operator");
+   }
+
+   public Register buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable) {
+      return null;
    }
 
 

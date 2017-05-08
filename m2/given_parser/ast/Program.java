@@ -50,7 +50,7 @@ public class Program
 
    public void printCFG() {
       for (int i = 0; i < funcs.size(); i++) {
-         funcs.get(i).buildCFG(allBlockList, startBlockList, endBlockList);
+         funcs.get(i).buildCFG(allBlockList, startBlockList, endBlockList, globalTable);
       }
 
       for (int i = 0; i < allBlockList.size() ; i++) {

@@ -21,7 +21,7 @@ public class ReturnEmptyStatement
       return true;
    }
 
-   public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock) {
+   public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable) {
       //System.out.println("inside this return empty statement function");
       curBlock.addBlock(endBlock);
       return endBlock;

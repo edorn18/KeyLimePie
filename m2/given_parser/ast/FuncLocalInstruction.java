@@ -8,9 +8,9 @@ public class FuncLocalInstruction
    implements Instruction
 {
    private final String varName;
-   private final iType varType;
+   private final LLVMType varType;
 
-   public FuncLocalInstruction(String varName, iType varType) {
+   public FuncLocalInstruction(String varName, LLVMType varType) {
       this.varName = varName;
       this.varType = varType;
    }

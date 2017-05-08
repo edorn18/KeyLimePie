@@ -1,6 +1,7 @@
 package ast;
 
 import java.util.Hashtable;
+import java.util.List;
 
 public class UnaryExpression
    extends AbstractExpression
@@ -58,6 +59,10 @@ public class UnaryExpression
          }
       }
       throw new IllegalArgumentException("Invalid operator");
+   }
+
+   public Register buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable) {
+      return null;
    }
 
    private static final String NOT_OPERATOR = "!";

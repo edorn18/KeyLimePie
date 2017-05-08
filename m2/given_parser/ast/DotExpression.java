@@ -1,6 +1,7 @@
 package ast;
 
 import java.util.Hashtable;
+import java.util.List;
 
 public class DotExpression
    extends AbstractExpression
@@ -34,5 +35,9 @@ public class DotExpression
       }
       System.out.println("This is left type: " + left.checkType(funcTable, structTable, retType).getClass());
       throw new IllegalArgumentException("Line #: " + lineNum + "- DotExpression left is not a struct");
+   }
+
+   public Register buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable) {
+      return null;
    }
 }

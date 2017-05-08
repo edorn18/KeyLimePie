@@ -24,7 +24,7 @@ public class ReturnStatement
       return true;   
    }
 
-   public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock) {
+   public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable) {
       curBlock.addBlock(endBlock);
       return endBlock;
    }

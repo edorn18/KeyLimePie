@@ -1,6 +1,7 @@
 package ast;
 
 import java.util.Hashtable;
+import java.util.List;
 
 public class TrueExpression
    extends AbstractExpression
@@ -14,5 +15,9 @@ public class TrueExpression
         Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
 //      System.out.println("Checking TrueExpression");
       return new BoolType();
+   }
+
+   public Register buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable) {
+      return null;
    } 
 }

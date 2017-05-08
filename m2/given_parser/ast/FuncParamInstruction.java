@@ -8,9 +8,9 @@ public class FuncParamInstruction
    implements Instruction
 {
    private final String varName;
-   private final iType varType;
+   private final LLVMType varType;
 
-   public FuncParamInstruction(String varName, iType varType) {
+   public FuncParamInstruction(String varName, LLVMType varType) {
       this.varName = varName;
       this.varType = varType;
    }

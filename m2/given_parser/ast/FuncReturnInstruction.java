@@ -8,9 +8,9 @@ public class FuncReturnInstruction
    implements Instruction
 {
    private final String varName;
-   private final iType varType;
+   private final LLVMType varType;
    
-   public FuncReturnInstruction(iType varType) {
+   public FuncReturnInstruction(LLVMType varType) {
       this.varName = "_retval_";
       this.varType = varType;
    }

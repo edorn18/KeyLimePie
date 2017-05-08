@@ -1,6 +1,7 @@
 package ast;
 
 import java.util.Hashtable;
+import java.util.List;
 
 public class NewExpression
    extends AbstractExpression
@@ -17,5 +18,9 @@ public class NewExpression
         Hashtable<String, Hashtable<String,Type>> structTable, Type retType) { 
 //      System.out.println("Checking NewExpression");
       return new StructType(lineNum, id);
+   }
+
+   public Register buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable) {
+      return null;
    }
 }

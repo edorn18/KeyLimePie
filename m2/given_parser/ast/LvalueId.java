@@ -21,4 +21,9 @@ public class LvalueId
       }
       return funcTable.get(id);
    }
+
+   public String getName() {
+      return id;
+   }
+
 }

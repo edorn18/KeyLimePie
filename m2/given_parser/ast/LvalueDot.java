@@ -29,4 +29,8 @@ public class LvalueDot
 
       return structTable.get(((StructType)(left.checkType(funcTable, structTable, retType))).getStructName()).get(id);
    }
+
+   public String getName() {
+      return "FILL_IN";
+   }
 }

@@ -1,6 +1,7 @@
 package ast;
 
 import java.util.Hashtable;
+import java.util.List;
 
 public class IntegerExpression
    extends AbstractExpression
@@ -17,5 +18,10 @@ public class IntegerExpression
         Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
     //  System.out.println("Checking UnaryExpression");
       return new IntType();
-   } 
+   }
+
+   public Register buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable) {
+      return null;
+   }
+ 
 }
