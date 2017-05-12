@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 
 public class Program
 {
@@ -90,7 +91,32 @@ public class Program
       try {
          PrintWriter outFile = new PrintWriter("test.ll", "UTF-8");
          int funcCounter = 0;
-         
+         String structKey, fieldKey;
+         Enumeration<String> structNames;
+         structNames = structTable.keys();
+         outFile.println("target triple=\"x86_64\"");
+
+         while (structNames.hasMoreElements()) {
+            Enumeration<String> fieldNames;
+            List<LLVMType> structFieldTypeList = new ArrayList<LLVMType>();
+            structKey = structNames.nextElement();
+            Hashtable<String,Type> fieldsTable = structTable.get(structKey);
+            fieldNames = fieldsTable.keys();
+            while (fieldNames.hasMoreElements()) {
+               fieldKey = fieldNames.nextElement();
+               Type t = (structTable.get(structKey)).get(fieldKey);
+               if (t instanceof StructType) {
+                  structFieldTypeList.add(new LLVMStructType(fieldKey));
+               }
+               else {
+                  structFieldTypeList.add(new iType(64));
+               }
+            }
+            LLVMDeclareStructInstruction newLLVMStructDecl = new LLVMDeclareStructInstruction(structKey, structFieldTypeList);
+            newLLVMStructDecl.printInstruction(outFile);
+         }
+         outFile.println("");
+   
          for (int i = 0; i < allBlockList.size(); i++) {
             if (funcCounter < startBlockList.size() && startBlockList.get(funcCounter) == allBlockList.get(i)) {
                String funcName = funcs.get(funcCounter).getFunctionName();
@@ -116,7 +142,6 @@ public class Program
                outFile.println("LU" + allBlockList.get(i).getLabel() + ":");
                allBlockList.get(i).printInstructions(outFile);
             }
-//            outFile.println("");
          }
          outFile.print("}\n\n");
          outFile.println("declare i8* @malloc(i64)");

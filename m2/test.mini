@@ -1,3 +1,15 @@
+struct simple
+{
+    int one;
+};
+
+struct foo
+{
+    int bar;
+    bool cool;
+    struct simple simp;
+};
+
 fun main() int
 {
     int a,b,c,d,e;
