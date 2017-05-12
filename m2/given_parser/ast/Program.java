@@ -94,7 +94,12 @@ public class Program
          for (int i = 0; i < allBlockList.size(); i++) {
             if (funcCounter < startBlockList.size() && startBlockList.get(funcCounter) == allBlockList.get(i)) {
                String funcName = funcs.get(funcCounter).getFunctionName();
-               outFile.print("define ");
+               if (funcCounter != 0) {
+                  outFile.print("}\n\ndefine ");
+               }
+               else if (funcCounter == 0) {
+                  outFile.print("define ");
+               }
                if (!(funcs.get(funcCounter).getFunctionRetType() instanceof VoidType)) {
                   outFile.print("i64 ");
                }
@@ -111,8 +116,17 @@ public class Program
                outFile.println("LU" + allBlockList.get(i).getLabel() + ":");
                allBlockList.get(i).printInstructions(outFile);
             }
-            outFile.println("");
+//            outFile.println("");
          }
+         outFile.print("}\n\n");
+         outFile.println("declare i8* @malloc(i64)");
+         outFile.println("declare void @free(i8*)");
+         outFile.println("declare i32 @printf(i8*, ...)");
+         outFile.println("declare i32 @scanf(i8*, ...)");
+         outFile.println("@.println = private unnamed_addr constant [5 x i8] c\"%ld\\0A\\00\", align 1");
+         outFile.println("@.print = private unnamed_addr constant [5 x i8] c\"%ld \\00\", align 1");
+         outFile.println("@.read = private unnamed_addr constant [4 x i8] c\"%ld\\00\", align 1");
+         outFile.println("@.read_scratch = common global i64 0, align 8");
 
          /*
          for (int i = 0; i < startBlockList.size(); i++) {
