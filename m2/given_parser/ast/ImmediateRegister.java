@@ -10,5 +10,13 @@ public class ImmediateRegister
    public ImmediateRegister(String value)
    {   
       this.value = value;
-   }   
+   } 
+
+   public LLVMType getRegType() {
+      return new iType(64);
+   }
+
+   public String getRegName() {
+      return value;
+   } 
 }

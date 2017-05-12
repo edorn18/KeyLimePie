@@ -61,7 +61,7 @@ public class UnaryExpression
       throw new IllegalArgumentException("Invalid operator");
    }
 
-   public Register buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable) {
+   public Value buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable) {
       return null;
    }
 

@@ -25,7 +25,8 @@ public class PrintStatement
    }
 
    public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable) {
-      expression.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable);
+      Value r;
+      r = expression.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable);
       return curBlock;
    }
 }

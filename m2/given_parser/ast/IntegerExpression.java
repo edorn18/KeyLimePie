@@ -20,8 +20,8 @@ public class IntegerExpression
       return new IntType();
    }
 
-   public Register buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable) {
-      return null;
+   public Value buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable) {
+      return new ImmediateRegister(value);
    }
  
 }

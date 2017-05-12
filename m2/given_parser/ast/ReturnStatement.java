@@ -25,7 +25,11 @@ public class ReturnStatement
    }
 
    public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable) {
+      
+      Value v = expression.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable);
+      curBlock.addInstruction(new StoreInstruction(v.getRegType(), v, v.getRegType(), new Register(v.getRegType(), "_retval_")));
       curBlock.addBlock(endBlock);
+
       return endBlock;
    }
 }

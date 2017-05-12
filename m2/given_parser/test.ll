@@ -1,80 +1,24 @@
-define void @tailrecursive()
-{
-LU0:
-	%_P_num = alloca i64
-	%unused = alloca %struct.foo*
-
-LU1:
-
-LU2:
-
-LU3:
-
-LU4:
-
-define i64 @add()
-{
-LU5:
-	%_retval_ = alloca i64
-	%_P_x = alloca i64
-	%_P_y = alloca i64
-
-LU6:
-
-define void @domath()
-{
-LU7:
-	%_P_num = alloca i64
-	%math1 = alloca %struct.foo*
-	%math2 = alloca %struct.foo*
-	%tmp = alloca i64
-
-LU8:
-
-LU9:
-
-LU10:
-
-define void @objinstantiation()
-{
-LU11:
-	%_P_num = alloca i64
-	%tmp = alloca %struct.foo*
-
-LU12:
-
-LU13:
-
-LU14:
-
-define i64 @ackermann()
-{
-LU15:
-	%_retval_ = alloca i64
-	%_P_m = alloca i64
-	%_P_n = alloca i64
-
-LU16:
-
-LU17:
-
-LU18:
-
-LU19:
-
-LU20:
-
-LU21:
-
 define i64 @main()
 {
-LU22:
+LU0:
 	%_retval_ = alloca i64
 	%a = alloca i64
 	%b = alloca i64
 	%c = alloca i64
 	%d = alloca i64
 	%e = alloca i64
+	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64 %a)
+	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64 %b)
+	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64 %c)
+	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64 %d)
+	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64 %e)
+	%u0 = load i64* %a
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]* @.println, i32 0, i32 0), i64 %u0)
+	%u1 = load i64* %b
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]* @.println, i32 0, i32 0), i64 %u1)
+	%u2 = load i64* %c
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]* @.println, i32 0, i32 0), i64 %u2)
+	STORE INSTRUCTION
 
-LU23:
+LU1:
 

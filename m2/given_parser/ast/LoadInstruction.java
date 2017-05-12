@@ -18,6 +18,10 @@ public class LoadInstruction
    }
 
    public void printInstruction(PrintWriter outFile) {
-      outFile.println("\t%" + reg.getRegNum() + " = load " + varType.getLLVMTypeName() + "* %" + varName);   
+      outFile.println("\t" + reg.getRegName() + " = load " + varType.getLLVMTypeName() + "* %" + varName);   
+   }
+
+   public Register getReg() {
+      return reg;
    }
 }

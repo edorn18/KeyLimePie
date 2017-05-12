@@ -1,7 +1,7 @@
 package ast;
 
 import java.util.Hashtable;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class InvocationExpression
@@ -46,7 +46,38 @@ public class InvocationExpression
       }
    }
 
-   public Register buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable) {
-      return null;
+   public Value buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable) {
+      List<Value> regList = new ArrayList<Value>();
+      String returnString = "";
+      Value v;
+      Register r;
+
+      System.out.println("This is an expression");
+
+      for (int i = 0; i < arguments.size(); i++) {
+         v = arguments.get(i).buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable);
+         regList.add(v);
+      }
+
+      FuncType f = (FuncType)(globalTable.get(name));
+
+
+      if (f.getFuncType() instanceof VoidType) {
+         r = new Register(new iType(64));
+         returnString = "void";
+         curBlock.addInstruction(new FuncVoidInvocationInstruction(name, regList, returnString));
+      }
+      else if (f.getFuncType() instanceof StructType) {
+         r = new Register((new LLVMStructType(((StructType)(f.getFuncType())).getStructName())));
+         returnString = r.getRegType().getLLVMTypeName();
+         curBlock.addInstruction(new FuncInvocationInstruction(name, regList, returnString, r));
+      }
+      else {
+         r = new Register(new iType(64));
+         returnString = r.getRegType().getLLVMTypeName();
+         curBlock.addInstruction(new FuncInvocationInstruction(name, regList, returnString, r));
+      }
+
+      return r;
    } 
 }

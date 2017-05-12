@@ -25,6 +25,9 @@ public class PrintLnStatement
    }
 
    public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable) {
+      Value r;
+      r = expression.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable);
+      curBlock.addInstruction(new PrintInstruction(r));
       return curBlock;
    }
 }

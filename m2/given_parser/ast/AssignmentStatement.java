@@ -48,6 +48,9 @@ public class AssignmentStatement
    }
 
    public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable) {
+      if (source instanceof ReadExpression) {
+         curBlock.addInstruction(new ReadInstruction(new iType(64), target.getName()));
+      }
       return curBlock;
    }
 

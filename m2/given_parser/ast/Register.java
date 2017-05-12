@@ -7,15 +7,18 @@ public class Register
 {
    private final LLVMType regType;
    private final String regName;
-   private final int regNum;
    public static int regTracker = 0;
 
    public Register(LLVMType regType)
    {   
       this.regType = regType;
-      this.regNum = regTracker;
-      this.regName = "%u" + regNum;
+      this.regName = "%u" + regTracker;
       this.regTracker++;
+   }
+
+   public Register(LLVMType regType, String regName) {
+      this.regType = regType;
+      this.regName = "%" + regName;
    } 
 
    public LLVMType getRegType() {
@@ -26,7 +29,4 @@ public class Register
       return this.regName;
    }
 
-   public int getRegNum() {
-      return this.regNum;
-   }
 }  

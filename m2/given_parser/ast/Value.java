@@ -4,6 +4,6 @@ package ast;
 
 public interface Value
 {
-
-
+public LLVMType getRegType();
+public String getRegName();
 }

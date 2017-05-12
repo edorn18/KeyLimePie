@@ -44,7 +44,12 @@ public class Program
          System.out.println(e.getMessage());
          System.out.println(e.toString());
       }
+      try {
       printCFG();
+      }
+      catch (Exception e) {
+         System.out.println(e.getMessage());
+      }
       printLlvmFile();
    }
 
