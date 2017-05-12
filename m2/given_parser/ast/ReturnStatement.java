@@ -28,6 +28,7 @@ public class ReturnStatement
       
       Value v = expression.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable);
       curBlock.addInstruction(new StoreInstruction(v.getRegType(), v, v.getRegType(), new Register(v.getRegType(), "_retval_")));
+      curBlock.addInstruction(new BranchLabelInstruction(endBlock));
       curBlock.addBlock(endBlock);
 
       return endBlock;

@@ -18,7 +18,8 @@ LU0:
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]* @.println, i32 0, i32 0), i64 %u1)
 	%u2 = load i64* %c
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]* @.println, i32 0, i32 0), i64 %u2)
-	STORE INSTRUCTION
+	store i64 0, i64* %_retval_
+	br label %LU1
 
 LU1:
 

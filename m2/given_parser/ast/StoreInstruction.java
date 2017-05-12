@@ -20,6 +20,6 @@ public class StoreInstruction
    }
 
    public void printInstruction(PrintWriter outFile) {
-      outFile.println("\tSTORE INSTRUCTION");
+      outFile.println("\tstore " + t1.getLLVMTypeName() + " " + v1.getRegName() + ", " + t2.getLLVMTypeName() + "* " + v2.getRegName());
    }
 }
