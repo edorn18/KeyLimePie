@@ -88,7 +88,20 @@ public class Function
          if (temp != end) {
             temp.addBlock(end);
          } 
-      }  
+      }
+      if (retType instanceof VoidType) {
+         end.addInstruction(new ReturnVoidInstruction());
+      }
+      else if (retType instanceof StructType) {
+         LoadInstruction l = new LoadInstruction(new LLVMStructType(((StructType)retType).getStructName()), "_retval_");
+         end.addInstruction(l);
+         end.addInstruction(new ReturnInstruction(l.getReg()));
+      }
+      else {
+         LoadInstruction l = new LoadInstruction(new iType(64), "_retval_");
+         end.addInstruction(l);
+         end.addInstruction(new ReturnInstruction(l.getReg()));
+      }
    }
 
    public void buildLLVMFuncStart(Block start) {

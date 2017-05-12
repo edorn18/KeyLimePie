@@ -4,17 +4,15 @@ import java.util.Hashtable;
 import java.util.List;
 import java.io.PrintWriter;
 
-public class ReturnInstruction
+public class ReturnVoidInstruction
    implements Instruction
 {
-   Value v;
 
-   public ReturnInstruction(Value v) {
-      this.v = v;
+   public ReturnVoidInstruction() {
    }
 
    public void printInstruction(PrintWriter outFile) {
-      outFile.println("\tret " + v.getRegType().getLLVMTypeName() + " " +  v.getRegName());
+      outFile.println("\tret void");
    }
 
 }
