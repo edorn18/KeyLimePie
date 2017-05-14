@@ -60,7 +60,6 @@ public class BinaryExpression
 
    public Type checkType(Hashtable<String,Type> funcTable,
 	Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
-//      System.out.println("Checking BinaryExpression");
       if (this.operator == Operator.TIMES || this.operator == Operator.DIVIDE
 	|| this.operator == Operator.PLUS || this.operator == Operator.MINUS) {
          if (left.checkType(funcTable, structTable, retType) instanceof IntType && right.checkType(funcTable, structTable, retType) instanceof IntType) {
@@ -102,7 +101,40 @@ public class BinaryExpression
    }
 
    public Value buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable) {
-      return null;
+      Value v = null;
+      if (this.operator == Operator.PLUS) {
+         Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable);
+         Value v2 = right.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable);
+         AddInstruction instr = new AddInstruction(v1, v2);
+         curBlock.addInstruction(instr);
+         v = instr.getReg();
+      }
+      else if (this.operator == Operator.MINUS) {
+         Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable);
+         Value v2 = right.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable);
+         SubInstruction instr = new SubInstruction(v1, v2);
+         curBlock.addInstruction(instr);
+         v = instr.getReg();
+      }
+      else if (this.operator == Operator.TIMES) {
+         Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable);
+         Value v2 = right.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable);
+         MulInstruction instr = new MulInstruction(v1, v2);
+         curBlock.addInstruction(instr);
+         v = instr.getReg();
+      }
+      else if (this.operator == Operator.DIVIDE) {
+         Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable);
+         Value v2 = right.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable);
+         SdivInstruction instr = new SdivInstruction(v1, v2);
+         curBlock.addInstruction(instr);
+         v = instr.getReg();
+      }
+      else {
+         return null;
+      }
+      
+      return v;
    }
 
 

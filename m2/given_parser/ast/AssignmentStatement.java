@@ -51,6 +51,10 @@ public class AssignmentStatement
       if (source instanceof ReadExpression) {
          curBlock.addInstruction(new ReadInstruction(new iType(64), target.getName()));
       }
+      else {
+         source.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable);
+      }
+         
       return curBlock;
    }
 
