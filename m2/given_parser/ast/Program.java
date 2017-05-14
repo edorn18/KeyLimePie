@@ -91,32 +91,26 @@ public class Program
       try {
          PrintWriter outFile = new PrintWriter("test.ll", "UTF-8");
          int funcCounter = 0;
-         String structKey, fieldKey;
-         Enumeration<String> structNames;
-         structNames = structTable.keys();
          outFile.println("target triple=\"x86_64\"");
 
-         while (structNames.hasMoreElements()) {
-            Enumeration<String> fieldNames;
-            List<LLVMType> structFieldTypeList = new ArrayList<LLVMType>();
-            structKey = structNames.nextElement();
-            Hashtable<String,Type> fieldsTable = structTable.get(structKey);
-            fieldNames = fieldsTable.keys();
-            while (fieldNames.hasMoreElements()) {
-               fieldKey = fieldNames.nextElement();
-               Type t = (structTable.get(structKey)).get(fieldKey);
+         for (int i = 0; i < types.size(); i++) {
+            String structName = types.get(i).getTypeName();
+            List<Declaration> fieldList = types.get(i).getFields();
+            List<LLVMType> llvmTypeList = new ArrayList<LLVMType>();
+            for (int j = 0; j < fieldList.size(); j++) {
+               Type t = fieldList.get(j).getDeclType();
                if (t instanceof StructType) {
-                  structFieldTypeList.add(new LLVMStructType(fieldKey));
+                  llvmTypeList.add(new LLVMStructType(((StructType)t).getStructName()));
                }
                else {
-                  structFieldTypeList.add(new iType(64));
+                  llvmTypeList.add(new iType(64));
                }
             }
-            LLVMDeclareStructInstruction newLLVMStructDecl = new LLVMDeclareStructInstruction(structKey, structFieldTypeList);
-            newLLVMStructDecl.printInstruction(outFile);
+            LLVMDeclareStructInstruction newLLVMInstr = new LLVMDeclareStructInstruction(structName, llvmTypeList);
+            newLLVMInstr.printInstruction(outFile);
          }
          outFile.println("");
-   
+
          for (int i = 0; i < allBlockList.size(); i++) {
             if (funcCounter < startBlockList.size() && startBlockList.get(funcCounter) == allBlockList.get(i)) {
                String funcName = funcs.get(funcCounter).getFunctionName();
