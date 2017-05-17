@@ -50,6 +50,8 @@ public class ConditionalStatement
       curBlock.addBlock(newThenBlock);
       curBlock.addBlock(newElseBlock);
 
+      Value v = guard.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+      curBlock.addInstruction(new BranchCondInstruction(v, newThenBlock, newElseBlock));      
       tempThenBlock = thenBlock.buildBlock(allBlockList, newThenBlock, endBlock, globalTable, localTable, varTable);
       tempElseBlock = elseBlock.buildBlock(allBlockList, newElseBlock, endBlock, globalTable, localTable, varTable);
 
@@ -59,6 +61,13 @@ public class ConditionalStatement
       else {
          newJoinBlock = new Block(allBlockList.size());
          
+         if (tempThenBlock != endBlock) {
+            tempThenBlock.addInstruction(new BranchLabelInstruction(newJoinBlock));
+         }
+         if (tempElseBlock != endBlock) {
+            tempElseBlock.addInstruction(new BranchLabelInstruction(newJoinBlock));
+         }
+
          if (tempThenBlock != endBlock) {
             tempThenBlock.addBlock(newJoinBlock);
          }

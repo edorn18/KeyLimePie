@@ -130,6 +130,62 @@ public class BinaryExpression
          curBlock.addInstruction(instr);
          v = instr.getReg();
       }
+      else if (this.operator == Operator.LT) {
+         Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+         Value v2 = right.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+         IcmpInstruction instr = new IcmpInstruction("slt", new iType(64), v1, v2);
+         curBlock.addInstruction(instr);
+         v = instr.getReg();
+      }
+      else if (this.operator == Operator.GT) {
+         Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+         Value v2 = right.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+         IcmpInstruction instr = new IcmpInstruction("sgt", new iType(64), v1, v2);
+         curBlock.addInstruction(instr);
+         v = instr.getReg();
+      }
+      else if (this.operator == Operator.LE) {
+         Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+         Value v2 = right.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+         IcmpInstruction instr = new IcmpInstruction("sle", new iType(64), v1, v2);
+         curBlock.addInstruction(instr);
+         v = instr.getReg();
+      }
+      else if (this.operator == Operator.GE) {
+         Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+         Value v2 = right.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+         IcmpInstruction instr = new IcmpInstruction("sge", new iType(64), v1, v2);
+         curBlock.addInstruction(instr);
+         v = instr.getReg();
+      }
+      else if (this.operator == Operator.EQ) {
+         Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+         Value v2 = right.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+         IcmpInstruction instr = new IcmpInstruction("eq", new iType(64), v1, v2);
+         curBlock.addInstruction(instr);
+         v = instr.getReg();
+      }
+      else if (this.operator == Operator.NE) {
+         Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+         Value v2 = right.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+         IcmpInstruction instr = new IcmpInstruction("ne", new iType(64), v1, v2);
+         curBlock.addInstruction(instr);
+         v = instr.getReg();
+      }
+      else if (this.operator == Operator.AND) {
+         Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+         Value v2 = right.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+         AndInstruction instr = new AndInstruction(v1, v2);
+         curBlock.addInstruction(instr);
+         v = instr.getReg();
+      }
+      else if (this.operator == Operator.OR) {
+         Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+         Value v2 = right.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+         OrInstruction instr = new OrInstruction(v1, v2);
+         curBlock.addInstruction(instr);
+         v = instr.getReg();
+      }
       else {
          return null;
       }
