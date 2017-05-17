@@ -43,6 +43,12 @@ public class WhileStatement
       allBlockList.add(falseBlock);
       tempBlock.addBlock(falseBlock);
 
+      Value v = guard.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+      curBlock.addInstruction(new BranchCondInstruction(v, trueBlock, falseBlock));
+
+      Value v2 = guard.buildBlock(allBlockList, trueBlock, endBlock, globalTable, localTable, varTable);
+      trueBlock.addInstruction(new BranchCondInstruction(v2, trueBlock, falseBlock));
+
       curBlock.addBlock(trueBlock);
       curBlock.addBlock(falseBlock);
 

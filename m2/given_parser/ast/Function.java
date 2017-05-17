@@ -91,6 +91,7 @@ public class Function
          temp = body.buildBlock(allBlockList, start, end, globalTable, localTable, varTable);
          if (temp != end) {
             temp.addBlock(end);
+            temp.addInstruction(new BranchLabelInstruction(end));
          } 
       }
       if (retType instanceof VoidType) {
