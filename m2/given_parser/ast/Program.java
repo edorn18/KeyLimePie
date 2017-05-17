@@ -46,10 +46,12 @@ public class Program
          System.out.println(e.toString());
       }
       try {
-      printCFG();
+         printCFG();
       }
       catch (Exception e) {
          System.out.println(e.getMessage());
+         System.out.println(e.toString());
+         System.out.println("I'm in line #" + e.getStackTrace()[0].getLineNumber());
       }
       printLlvmFile();
    }
@@ -58,7 +60,6 @@ public class Program
       for (int i = 0; i < funcs.size(); i++) {
          funcs.get(i).buildCFG(allBlockList, startBlockList, endBlockList, globalTable);
       }
-
       for (int i = 0; i < allBlockList.size() ; i++) {
          System.out.println("Block " + allBlockList.get(i).getLabel());
          System.out.print("Links to block(s): ");

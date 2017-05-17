@@ -24,9 +24,9 @@ public class ReturnStatement
       return true;   
    }
 
-   public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable) {
+   public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable) {
       
-      Value v = expression.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable);
+      Value v = expression.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
       curBlock.addInstruction(new StoreInstruction(v.getRegType(), v, v.getRegType(), new Register(v.getRegType(), "_retval_")));
       curBlock.addInstruction(new BranchLabelInstruction(endBlock));
       curBlock.addBlock(endBlock);

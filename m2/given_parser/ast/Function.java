@@ -15,6 +15,7 @@ public class Function
    private Hashtable<String, Hashtable<String,Type>> structTable;   
    private Hashtable<String, Type> globalTable;
    private Hashtable<String, Type> localTable;
+   private Hashtable<String, String> varTable;
 
    public Function(int lineNum, String name, List<Declaration> params,
       Type retType, List<Declaration> locals, Statement body)
@@ -61,11 +62,14 @@ public class Function
 
    private void makeLocalTable() {
       localTable = new Hashtable<String,Type>();
+      varTable = new Hashtable<String,String>();
       for (int j = 0; j < params.size(); j++) {
             localTable.put(params.get(j).getDeclName(), params.get(j).getDeclType());
+            varTable.put(params.get(j).getDeclName(), "_P_" + params.get(j).getDeclName());
       }
       for (int j = 0; j < locals.size(); j++) {
             localTable.put(locals.get(j).getDeclName(), locals.get(j).getDeclType());
+            varTable.put(locals.get(j).getDeclName(), locals.get(j).getDeclName());
       }
    }
 
@@ -84,7 +88,7 @@ public class Function
          start.addBlock(end);
       }
       else {
-         temp = body.buildBlock(allBlockList, start, end, globalTable, localTable);
+         temp = body.buildBlock(allBlockList, start, end, globalTable, localTable, varTable);
          if (temp != end) {
             temp.addBlock(end);
          } 
@@ -129,6 +133,23 @@ public class Function
             start.addInstruction(new FuncLocalInstruction(locals.get(i).getDeclName(), new iType(64)));
          }
       }
+      for (int i = 0; i < params.size(); i++) {
+         if (params.get(i).getDeclType() instanceof StructType) {
+            LLVMType temp_type = new LLVMStructType(((StructType)(params.get(i).getDeclType())).getStructName());
+            Value v1 = new Register(temp_type, params.get(i).getDeclName());
+            Value v2 = new Register(temp_type, "_P_" + params.get(i).getDeclName());
+            start.addInstruction(new StoreInstruction(temp_type, v1, temp_type, v2));
+         }
+         else {
+            LLVMType temp_type = new iType(64);
+            Value v1 = new Register(temp_type, params.get(i).getDeclName());
+            Value v2 = new Register(temp_type, "_P_" + params.get(i).getDeclName());
+            start.addInstruction(new StoreInstruction(temp_type, v1, temp_type, v2));
+         }
+      }
+
+
+
    }
 
 }

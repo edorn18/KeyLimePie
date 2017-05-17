@@ -100,32 +100,32 @@ public class BinaryExpression
       throw new IllegalArgumentException("Invalid operator");
    }
 
-   public Value buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable) {
+   public Value buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable) {
       Value v = null;
       if (this.operator == Operator.PLUS) {
-         Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable);
-         Value v2 = right.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable);
+         Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+         Value v2 = right.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
          AddInstruction instr = new AddInstruction(v1, v2);
          curBlock.addInstruction(instr);
          v = instr.getReg();
       }
       else if (this.operator == Operator.MINUS) {
-         Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable);
-         Value v2 = right.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable);
+         Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+         Value v2 = right.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
          SubInstruction instr = new SubInstruction(v1, v2);
          curBlock.addInstruction(instr);
          v = instr.getReg();
       }
       else if (this.operator == Operator.TIMES) {
-         Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable);
-         Value v2 = right.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable);
+         Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+         Value v2 = right.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
          MulInstruction instr = new MulInstruction(v1, v2);
          curBlock.addInstruction(instr);
          v = instr.getReg();
       }
       else if (this.operator == Operator.DIVIDE) {
-         Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable);
-         Value v2 = right.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable);
+         Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+         Value v2 = right.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
          SdivInstruction instr = new SdivInstruction(v1, v2);
          curBlock.addInstruction(instr);
          v = instr.getReg();

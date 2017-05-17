@@ -28,7 +28,7 @@ public class WhileStatement
       return false;
    }
 
-   public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable) {
+   public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable) {
       Block trueBlock;
       Block falseBlock;
       Block tempBlock;
@@ -36,7 +36,7 @@ public class WhileStatement
       trueBlock = new Block(allBlockList.size());
       allBlockList.add(trueBlock);
 
-      tempBlock = body.buildBlock(allBlockList, trueBlock, endBlock, globalTable, localTable);
+      tempBlock = body.buildBlock(allBlockList, trueBlock, endBlock, globalTable, localTable, varTable);
       tempBlock.addBlock(trueBlock);
 
       falseBlock = new Block(allBlockList.size());

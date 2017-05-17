@@ -35,7 +35,7 @@ public class ConditionalStatement
       return false;
    }
 
-   public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable) {
+   public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable) {
       Block newThenBlock;
       Block newElseBlock;
       Block newJoinBlock;
@@ -50,8 +50,8 @@ public class ConditionalStatement
       curBlock.addBlock(newThenBlock);
       curBlock.addBlock(newElseBlock);
 
-      tempThenBlock = thenBlock.buildBlock(allBlockList, newThenBlock, endBlock, globalTable, localTable);
-      tempElseBlock = elseBlock.buildBlock(allBlockList, newElseBlock, endBlock, globalTable, localTable);
+      tempThenBlock = thenBlock.buildBlock(allBlockList, newThenBlock, endBlock, globalTable, localTable, varTable);
+      tempElseBlock = elseBlock.buildBlock(allBlockList, newElseBlock, endBlock, globalTable, localTable, varTable);
 
       if (tempThenBlock == endBlock && tempElseBlock == endBlock) {
          return endBlock;

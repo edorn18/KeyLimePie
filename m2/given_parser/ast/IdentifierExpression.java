@@ -24,16 +24,16 @@ public class IdentifierExpression
       return funcTable.get(id);
    }
 
-   public Value buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable) {
+   public Value buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable) {
       LoadInstruction ldInstr = null;
 
       if (localTable.get(id) != null) {
          if (localTable.get(id) instanceof StructType) {
-            ldInstr = new LoadInstruction(new LLVMStructType(((StructType)(localTable.get(id))).getStructName()), id);
+            ldInstr = new LoadInstruction(new LLVMStructType(((StructType)(localTable.get(id))).getStructName()), varTable.get(id));
             curBlock.addInstruction(ldInstr);
          }
          else {
-            ldInstr = new LoadInstruction(new iType(64), id);
+            ldInstr = new LoadInstruction(new iType(64), varTable.get(id));
             curBlock.addInstruction(ldInstr);
          }
       }
