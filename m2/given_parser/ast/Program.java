@@ -111,7 +111,7 @@ public class Program
             newLLVMInstr.printInstruction(outFile);
          }
          outFile.println("");
-
+         int countForFuncParams = 0;
          for (int i = 0; i < allBlockList.size(); i++) {
             if (funcCounter < startBlockList.size() && startBlockList.get(funcCounter) == allBlockList.get(i)) {
                String funcName = funcs.get(funcCounter).getFunctionName();
@@ -127,10 +127,9 @@ public class Program
                else {
                   outFile.print("void ");
                }
-//               outFile.println("@" + funcName + "()");
                outFile.print("@" + funcName + "(");
-               if (i < funcs.size()) {
-                  List<Declaration> funcParams = funcs.get(i).getFunctionParams();
+               if (funcs.get(countForFuncParams).getFunctionName() == funcName) {
+                  List<Declaration> funcParams = funcs.get(countForFuncParams).getFunctionParams();
                   for (int j = 0; j < funcParams.size(); j++) {
                      if (funcParams.get(j).getDeclType() instanceof IntType) {
                         outFile.print("i64 ");
@@ -149,9 +148,10 @@ public class Program
                         outFile.println("%" + funcParams.get(j).getDeclName() + ")");
                      }
                   }
-               }
-               else {
-                  outFile.println(")");
+                  if (funcParams.size() == 0) {
+                     outFile.println(")");
+                  }
+                  countForFuncParams++;
                }
                outFile.println("{");
                outFile.println("LU" + allBlockList.get(i).getLabel() + ":");
@@ -263,9 +263,4 @@ public class Program
 
    private void printFuncs() {
       System.out.println("Printing the func list");
-      for (int i = 0; i < funcs.size(); i++) {
-         System.out.println(funcs.get(i).getFunctionName());
-      }
-      System.out.println("");
-   }
-}
+      for (int i = 0; i < funcs.size(); i+
