@@ -94,6 +94,7 @@ public class Program
          int funcCounter = 0;
          outFile.println("target triple=\"x86_64\"");
 
+       // print struct declarations
          for (int i = 0; i < types.size(); i++) {
             String structName = types.get(i).getTypeName();
             List<Declaration> fieldList = types.get(i).getFields();
@@ -111,6 +112,22 @@ public class Program
             newLLVMInstr.printInstruction(outFile);
          }
          outFile.println("");
+
+         // print global vars
+         for (int m = 0; m < decls.size(); m++) {
+            outFile.print("@" + decls.get(m).getDeclName() + " = common global ");
+            if (decls.get(m).getDeclType() instanceof StructType) {
+               Type t = decls.get(m).getDeclType();
+               LLVMStructType llstruct = new LLVMStructType(((StructType)t).getStructName());
+               outFile.print(llstruct.getLLVMTypeName() + " ");
+            }
+            else {
+               outFile.print("i64" );
+            }
+            outFile.print("null, align 8\n\n");
+         }
+
+       // print func declarations, func params, and LU's
          int countForFuncParams = 0;
          for (int i = 0; i < allBlockList.size(); i++) {
             if (funcCounter < startBlockList.size() && startBlockList.get(funcCounter) == allBlockList.get(i)) {
@@ -263,4 +280,9 @@ public class Program
 
    private void printFuncs() {
       System.out.println("Printing the func list");
-      for (int i = 0; i < funcs.size(); i+
+      for (int i = 0; i < funcs.size(); i++) {
+         System.out.println(funcs.get(i).getFunctionName());
+      }
+      System.out.println("");
+   }
+}
