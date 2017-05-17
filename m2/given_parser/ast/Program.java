@@ -127,7 +127,32 @@ public class Program
                else {
                   outFile.print("void ");
                }
-               outFile.println("@" + funcName + "()");
+//               outFile.println("@" + funcName + "()");
+               outFile.print("@" + funcName + "(");
+               if (i < funcs.size()) {
+                  List<Declaration> funcParams = funcs.get(i).getFunctionParams();
+                  for (int j = 0; j < funcParams.size(); j++) {
+                     if (funcParams.get(j).getDeclType() instanceof IntType) {
+                        outFile.print("i64 ");
+                     }
+                     if (funcParams.get(j).getDeclType() instanceof BoolType) {
+                        outFile.print("i1 ");
+                     }
+             // Not sure about this StructType:
+                     if (funcParams.get(j).getDeclType() instanceof StructType) {
+                        outFile.print("%struct." + funcParams.get(j).getDeclName() + "*");
+                     }
+                     if (j < funcParams.size() - 1) {
+                        outFile.print("%" + funcParams.get(j).getDeclName() + ", ");
+                     }
+                     else if (j == funcParams.size() - 1) {
+                        outFile.println("%" + funcParams.get(j).getDeclName() + ")");
+                     }
+                  }
+               }
+               else {
+                  outFile.println(")");
+               }
                outFile.println("{");
                outFile.println("LU" + allBlockList.get(i).getLabel() + ":");
                allBlockList.get(i).printInstructions(outFile);
