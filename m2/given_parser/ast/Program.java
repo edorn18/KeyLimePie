@@ -148,15 +148,14 @@ public class Program
                if (funcs.get(countForFuncParams).getFunctionName() == funcName) {
                   List<Declaration> funcParams = funcs.get(countForFuncParams).getFunctionParams();
                   for (int j = 0; j < funcParams.size(); j++) {
-                     if (funcParams.get(j).getDeclType() instanceof IntType) {
+                     if (!(funcParams.get(j).getDeclType() instanceof StructType)) {
                         outFile.print("i64 ");
-                     }
-                     if (funcParams.get(j).getDeclType() instanceof BoolType) {
-                        outFile.print("i1 ");
                      }
              // Not sure about this StructType:
                      if (funcParams.get(j).getDeclType() instanceof StructType) {
-                        outFile.print("%struct." + funcParams.get(j).getDeclName() + "*");
+                        Type t = funcParams.get(j).getDeclType();
+                        LLVMStructType llstruct = new LLVMStructType(((StructType)t).getStructName());
+                        outFile.print(llstruct.getLLVMTypeName());
                      }
                      if (j < funcParams.size() - 1) {
                         outFile.print("%" + funcParams.get(j).getDeclName() + ", ");
