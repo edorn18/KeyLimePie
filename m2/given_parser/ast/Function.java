@@ -73,7 +73,7 @@ public class Function
       }
    }
 
-   public void buildCFG(List<Block> allBlockList, List<Block> startBlockList, List<Block> endBlockList, Hashtable<String,Type> gTable) {
+   public void buildCFG(List<Block> allBlockList, List<Block> startBlockList, List<Block> endBlockList, Hashtable<String,Type> gTable, List<TypeDeclaration> types) {
       this.globalTable = gTable;
       makeLocalTable();
       Block temp;
@@ -88,7 +88,7 @@ public class Function
          start.addBlock(end);
       }
       else {
-         temp = body.buildBlock(allBlockList, start, end, globalTable, localTable, varTable);
+         temp = body.buildBlock(allBlockList, start, end, globalTable, localTable, varTable, types);
          if (temp != end) {
             temp.addBlock(end);
             temp.addInstruction(new BranchLabelInstruction(end));

@@ -47,12 +47,12 @@ public class AssignmentStatement
       return false;
    }
 
-   public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable) {
+   public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable, List<TypeDeclaration> types) {
       if (source instanceof ReadExpression) {
          curBlock.addInstruction(new ReadInstruction(new iType(64), target.getName()));
       }
       else {
-         Value r = source.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+         Value r = source.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);
          curBlock.addInstruction(new StoreInstruction(r.getRegType(), r, r.getRegType(), new Register(r.getRegType(), target.getName())));
 
       }

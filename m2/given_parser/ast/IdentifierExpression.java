@@ -24,7 +24,7 @@ public class IdentifierExpression
       return funcTable.get(id);
    }
 
-   public Value buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable) {
+   public Value buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable, List<TypeDeclaration> types) {
       LoadInstruction ldInstr = null;
 
       if (localTable.get(id) != null) {

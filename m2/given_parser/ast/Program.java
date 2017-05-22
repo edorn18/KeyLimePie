@@ -58,7 +58,7 @@ public class Program
 
    public void printCFG() {
       for (int i = 0; i < funcs.size(); i++) {
-         funcs.get(i).buildCFG(allBlockList, startBlockList, endBlockList, globalTable);
+         funcs.get(i).buildCFG(allBlockList, startBlockList, endBlockList, globalTable, types);
       }
       for (int i = 0; i < allBlockList.size() ; i++) {
          System.out.println("Block " + allBlockList.get(i).getLabel());

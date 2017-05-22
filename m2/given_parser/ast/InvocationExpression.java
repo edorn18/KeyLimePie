@@ -46,14 +46,14 @@ public class InvocationExpression
       }
    }
 
-   public Value buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable) {
+   public Value buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable, List<TypeDeclaration> types) {
       List<Value> regList = new ArrayList<Value>();
       String returnString = "";
       Value v;
       Register r;
 
       for (int i = 0; i < arguments.size(); i++) {
-         v = arguments.get(i).buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+         v = arguments.get(i).buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);
          regList.add(v);
       }
 

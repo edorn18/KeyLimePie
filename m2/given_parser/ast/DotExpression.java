@@ -37,7 +37,7 @@ public class DotExpression
       throw new IllegalArgumentException("Line #: " + lineNum + "- DotExpression left is not a struct");
    }
 
-   public Value buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable) {
+   public Value buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable, List<TypeDeclaration> types) {
       return null;
    }
 }

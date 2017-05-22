@@ -39,9 +39,9 @@ public class BlockStatement
       return false;
    }
 
-   public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable) {
+   public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable, List<TypeDeclaration> types) {
       for (int i = 0; i < statements.size(); i++) {
-         curBlock = statements.get(i).buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+         curBlock = statements.get(i).buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);
       }
       return curBlock;
    }
