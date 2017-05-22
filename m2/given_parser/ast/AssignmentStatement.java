@@ -52,7 +52,9 @@ public class AssignmentStatement
          curBlock.addInstruction(new ReadInstruction(new iType(64), target.getName()));
       }
       else {
-         source.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+         Value r = source.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable);
+         curBlock.addInstruction(new StoreInstruction(r.getRegType(), r, r.getRegType(), new Register(r.getRegType(), target.getName())));
+
       }
          
       return curBlock;

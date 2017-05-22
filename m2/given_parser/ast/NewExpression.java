@@ -21,6 +21,16 @@ public class NewExpression
    }
 
    public Value buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable) {
-      return null;
+      Value r, r2, r3;
+
+      CallMallocInstruction instr = new CallMallocInstruction(3);      
+      curBlock.addInstruction(instr);
+      r = instr.getReg();
+      r2 = new Register(new LLVMStructType(id), id);
+      BitCastInstruction instr2 = new BitCastInstruction(r, r2);
+      curBlock.addInstruction(instr2);
+      r3 = instr2.getReg();
+
+      return r3;
    }
 }
