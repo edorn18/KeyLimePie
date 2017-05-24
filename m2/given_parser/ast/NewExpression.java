@@ -23,16 +23,12 @@ public class NewExpression
    public Value buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable, List<TypeDeclaration> types) {
       Value r, r2, r3;
       int size = 0;
-System.out.println("id is: " + id);
+
       for (int i = 0; i < types.size(); i++) {
-         System.out.println("type name is: " + types.get(i).getTypeName());
-         if (types.get(i).getTypeName() == id) {
+         if ((types.get(i).getTypeName()).equals(id)) {
             size = types.get(i).getFields().size();
-      System.out.println("size1 is: " + size);
          }
       }
-
-      System.out.println("size2 is: " + size);
 
       CallMallocInstruction instr = new CallMallocInstruction(size); 
       curBlock.addInstruction(instr);
