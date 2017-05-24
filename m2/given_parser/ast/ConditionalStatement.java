@@ -51,7 +51,9 @@ public class ConditionalStatement
       curBlock.addBlock(newElseBlock);
 
       Value v = guard.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);
-      curBlock.addInstruction(new BranchCondInstruction(v, newThenBlock, newElseBlock));      
+      TruncInstruction truncInst = new TruncInstruction(v, new iType(1));
+      curBlock.addInstruction(truncInst);
+      curBlock.addInstruction(new BranchCondInstruction(truncInst.getReg(), newThenBlock, newElseBlock)); 
       tempThenBlock = thenBlock.buildBlock(allBlockList, newThenBlock, endBlock, globalTable, localTable, varTable, types);
       tempElseBlock = elseBlock.buildBlock(allBlockList, newElseBlock, endBlock, globalTable, localTable, varTable, types);
 

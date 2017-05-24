@@ -9,15 +9,13 @@ public class TruncInstruction
 {
    private final Value value; 
    private LLVMType valueType;
-   private final Value convertVal; 
    private LLVMType convertType;
    private final Register reg;
 
-   public TruncInstruction(Value value, Value convertVal) {
+   public TruncInstruction(Value value, LLVMType convertType) {
       this.value = value;
       this.valueType = value.getRegType(); 
-      this.convertType = convertVal.getRegType();
-      this.convertVal = convertVal;
+      this.convertType = convertType;
       this.reg = new Register(convertType);
    }   
 
