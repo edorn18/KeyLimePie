@@ -1,0 +1,33 @@
+struct simple
+{
+    int one;
+};
+
+struct foo
+{
+    int bar;
+    bool cool;
+    struct simple simp;
+};
+
+fun add(int x, int y) int 
+{
+    return x + y;
+}
+
+fun main() int
+{
+    int a,b,c,d,e;
+
+    a = read;
+    b = read;
+    c = read;
+    d = read;
+    e = read;
+
+    print a endl;
+    print b endl;
+    print c endl;
+
+    return 0;
+}
