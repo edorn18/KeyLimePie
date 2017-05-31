@@ -1,6 +1,7 @@
 package ast;
 
 import java.util.Hashtable;
+import java.util.List;
 
 public class LvalueDot
    implements Lvalue
@@ -30,7 +31,32 @@ public class LvalueDot
       return structTable.get(((StructType)(left.checkType(funcTable, structTable, retType))).getStructName()).get(id);
    }
 
+   public Value buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable, List<TypeDeclaration> types) {
+      Value v = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);
+      int index = 0;
+      for (int i = 0; i < types.size(); i++) {
+         if (types.get(i).getTypeName().equals(v.getRegType().getName())) {
+            List<Declaration> fields = types.get(i).getFields();
+            for (int j = 0; j < fields.size(); j++) {
+               if (fields.get(j).getDeclName().equals(id)) {
+                  index = j;
+               }
+            }
+         }
+      }
+      
+      GetElementInstruction instr = new GetElementInstruction(v, index);
+      curBlock.addInstruction(instr);
+      Value v2 = instr.getReg(); 
+      return v2;
+   }
+
+   public Expression getExp() {
+      return left;
+   }
+
    public String getName() {
-      return "FILL_IN";
+      return ((IdentifierExpression)(left)).getId();
+      //return id;
    }
 }

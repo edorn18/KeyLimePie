@@ -26,6 +26,14 @@ public class DeleteStatement
    }
 
    public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable, List<TypeDeclaration> types) {
+      
+      Value v = expression.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);
+      Value v2 = new Register(new iType(8, 1)); 
+      BitCastInstruction instr1 = new BitCastInstruction(v, v2);
+      Value v3 = instr1.getReg();
+      curBlock.addInstruction(instr1);
+      curBlock.addInstruction(new CallFreeInstruction(v3));
+
       return curBlock;
    }
 }

@@ -52,4 +52,8 @@ public class IdentifierExpression
       return ldInstr.getReg();
 
    }
+
+   public String getId() {
+      return id;
+   }
 }

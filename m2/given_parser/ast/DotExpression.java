@@ -38,6 +38,22 @@ public class DotExpression
    }
 
    public Value buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable, List<TypeDeclaration> types) {
-      return null;
+      Value v = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);
+      int index = 0;
+
+      for (int i = 0; i < types.size(); i++) {
+         if (types.get(i).getTypeName().equals(v.getRegType().getName())) {
+            List<Declaration> fields = types.get(i).getFields();
+            for (int j = 0; j < fields.size(); j++) {
+               if (fields.get(j).getDeclName().equals(id)) {
+                  index = j;
+               }
+            }
+         }
+      }
+      GetElementInstruction instr = new GetElementInstruction(v, index);
+      curBlock.addInstruction(instr);
+      Value v2 = instr.getReg();
+      return v2;
    }
 }

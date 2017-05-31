@@ -28,14 +28,14 @@ fun add(int x, int y) int
     return x + y;
 }
 
-#fun domath(int num) void
-#{
-#    struct foo math1;
-#    struct foo math2;
-#    int tmp;
-#
-#    math1 = new foo;
-#    math1.simp = new simple;
+fun domath(int num) void
+{
+    struct foo math1;
+    struct foo math2;
+    int tmp;
+
+    math1 = new foo;
+    math1.simp = new simple;
 #    math2 = new foo;
 #    math2.simp = new simple;
 #
@@ -55,7 +55,7 @@ fun add(int x, int y) int
 #
 #      delete math1;
 #      delete math2;
-#}
+}
 
 fun objinstantiation(int num) void
 {
@@ -95,13 +95,13 @@ fun main() int
     d = read;
     e = read;
 
-    #tailrecursive(a);
+    tailrecursive(a);
     print a endl;
-    #domath(b);
+    domath(b);
     print b endl;
-    #objinstantiation(c);
+    objinstantiation(c);
     print c endl;
-    #print ackermann(d,e) endl;
+    print ackermann(d,e) endl;
 
     return 0;
 }

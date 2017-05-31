@@ -12,7 +12,7 @@ public class CallMallocInstruction
    private int space;
 
    public CallMallocInstruction(int space) {
-      this.varType = new iType(8);
+      this.varType = new iType(8, 1);
       this.reg = new Register(varType);
       this.space = space * 8;
    }
@@ -22,6 +22,6 @@ public class CallMallocInstruction
    }
 
    public void printInstruction(PrintWriter outFile) {
-      outFile.println("\t" + reg.getRegName() + " = call " + varType.getLLVMTypeName() + "* @malloc(i64 " + space + ")");
+      outFile.println("\t" + reg.getRegName() + " = call " + varType.getLLVMTypeName() + " @malloc(i64 " + space + ")");
    }
 }

@@ -15,4 +15,8 @@ public class LLVMStructType
    public String getLLVMTypeName() {
       return "%struct." + structName + "*";
    }
+ 
+   public String getName() {
+      return structName;
+   }
 }
