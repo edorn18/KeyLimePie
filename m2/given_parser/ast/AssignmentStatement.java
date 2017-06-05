@@ -54,7 +54,8 @@ public class AssignmentStatement
       else {
          Value r = source.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);
          if (target instanceof LvalueId) {
-            curBlock.addInstruction(new StoreInstruction(r.getRegType(), r, r.getRegType(), new Register(r.getRegType(), target.getName())));
+            String targName = varTable.get(target.getName());
+            curBlock.addInstruction(new StoreInstruction(r.getRegType(), r, r.getRegType(), new Register(r.getRegType(), targName)));
          }
          else {
             Value r2 = ((LvalueDot)(target)).buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);

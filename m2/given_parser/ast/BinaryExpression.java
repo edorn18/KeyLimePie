@@ -136,6 +136,9 @@ public class BinaryExpression
          IcmpInstruction instr = new IcmpInstruction("slt", new iType(64), v1, v2);
          curBlock.addInstruction(instr);
          v = instr.getReg();
+         ZextInstruction instr2 = new ZextInstruction(new iType(1), v, new Register(new iType(64)));
+         curBlock.addInstruction(instr2);
+         v = instr2.getReg();
       }
       else if (this.operator == Operator.GT) {
          Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);
@@ -143,6 +146,9 @@ public class BinaryExpression
          IcmpInstruction instr = new IcmpInstruction("sgt", new iType(64), v1, v2);
          curBlock.addInstruction(instr);
          v = instr.getReg();
+         ZextInstruction instr2 = new ZextInstruction(new iType(1), v, new Register(new iType(64)));
+         curBlock.addInstruction(instr2);
+         v = instr2.getReg();
       }
       else if (this.operator == Operator.LE) {
          Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);
@@ -150,6 +156,9 @@ public class BinaryExpression
          IcmpInstruction instr = new IcmpInstruction("sle", new iType(64), v1, v2);
          curBlock.addInstruction(instr);
          v = instr.getReg();
+         ZextInstruction instr2 = new ZextInstruction(new iType(1), v, new Register(new iType(64)));
+         curBlock.addInstruction(instr2);
+         v = instr2.getReg();
       }
       else if (this.operator == Operator.GE) {
          Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);
@@ -157,6 +166,9 @@ public class BinaryExpression
          IcmpInstruction instr = new IcmpInstruction("sge", new iType(64), v1, v2);
          curBlock.addInstruction(instr);
          v = instr.getReg();
+         ZextInstruction instr2 = new ZextInstruction(new iType(1), v, new Register(new iType(64)));
+         curBlock.addInstruction(instr2);
+         v = instr2.getReg();
       }
       else if (this.operator == Operator.EQ) {
          Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);
@@ -164,6 +176,9 @@ public class BinaryExpression
          IcmpInstruction instr = new IcmpInstruction("eq", new iType(64), v1, v2);
          curBlock.addInstruction(instr);
          v = instr.getReg();
+         ZextInstruction instr2 = new ZextInstruction(new iType(1), v, new Register(new iType(64)));
+         curBlock.addInstruction(instr2);
+         v = instr2.getReg();
       }
       else if (this.operator == Operator.NE) {
          Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);
@@ -171,6 +186,9 @@ public class BinaryExpression
          IcmpInstruction instr = new IcmpInstruction("ne", new iType(64), v1, v2);
          curBlock.addInstruction(instr);
          v = instr.getReg();
+         ZextInstruction instr2 = new ZextInstruction(new iType(1), v, new Register(new iType(64)));
+         curBlock.addInstruction(instr2);
+         v = instr2.getReg();
       }
       else if (this.operator == Operator.AND) {
          Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);

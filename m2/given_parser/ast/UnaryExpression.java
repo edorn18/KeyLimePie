@@ -62,7 +62,8 @@ public class UnaryExpression
    }
 
    public Value buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable, List<TypeDeclaration> types) {
-      return null;
+      Value v1 = operand.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);  
+      return new ImmediateRegister("-" + v1.getRegName());
    }
 
    private static final String NOT_OPERATOR = "!";

@@ -13,7 +13,7 @@ public class AddInstruction
    private final Value v2;
 
    public AddInstruction(Value v1, Value v2) {
-      varType = new iType(64);
+      varType = v1.getRegType();
       this.reg = new Register(varType);
       this.v1 = v1;
       this.v2 = v2;
