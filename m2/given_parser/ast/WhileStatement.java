@@ -48,10 +48,10 @@ public class WhileStatement
       curBlock.addInstruction(truncInst);
       curBlock.addInstruction(new BranchCondInstruction(truncInst.getReg(), trueBlock, falseBlock));
 
-      Value v2 = guard.buildBlock(allBlockList, trueBlock, endBlock, globalTable, localTable, varTable, types);
+      Value v2 = guard.buildBlock(allBlockList, tempBlock, endBlock, globalTable, localTable, varTable, types);
       TruncInstruction truncInst2 = new TruncInstruction(v2, new iType(1));
-      trueBlock.addInstruction(truncInst2);
-      trueBlock.addInstruction(new BranchCondInstruction(truncInst2.getReg(), trueBlock, falseBlock));
+      tempBlock.addInstruction(truncInst2);
+      tempBlock.addInstruction(new BranchCondInstruction(truncInst2.getReg(), trueBlock, falseBlock));
 
       curBlock.addBlock(trueBlock);
       curBlock.addBlock(falseBlock);

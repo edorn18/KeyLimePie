@@ -11,8 +11,8 @@ public class GetElementInstruction
    private final Value v;
    private final int index;
 
-   public GetElementInstruction(Value v, int index) {
-      this.reg = new Register(v.getRegType());
+   public GetElementInstruction(Value v, int index, LLVMType type) {
+      this.reg = new Register(type);
       this.v = v;
       this.index = index;
    }

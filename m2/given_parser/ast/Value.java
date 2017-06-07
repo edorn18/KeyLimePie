@@ -6,4 +6,5 @@ public interface Value
 {
 public LLVMType getRegType();
 public String getRegName();
+public String getRegNameNoSym();
 }

@@ -44,7 +44,7 @@ public class IdentifierExpression
             curBlock.addInstruction(ldInstr);
             }
             else {
-               ldInstr = new LoadInstruction(new iType(64), id);
+               ldInstr = new LoadInstruction(new iType(64), id, 1);
                curBlock.addInstruction(ldInstr);
             }
          }

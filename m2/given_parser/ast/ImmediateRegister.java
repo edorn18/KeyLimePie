@@ -18,5 +18,9 @@ public class ImmediateRegister
 
    public String getRegName() {
       return value;
-   } 
+   }
+
+   public String getRegNameNoSym() {
+      return value;
+   }
 }

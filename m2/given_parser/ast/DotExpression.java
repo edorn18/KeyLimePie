@@ -40,6 +40,7 @@ public class DotExpression
    public Value buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable, List<TypeDeclaration> types) {
       Value v = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);
       int index = 0;
+      Type t = null;
 
       for (int i = 0; i < types.size(); i++) {
          if (types.get(i).getTypeName().equals(v.getRegType().getName())) {
@@ -47,13 +48,24 @@ public class DotExpression
             for (int j = 0; j < fields.size(); j++) {
                if (fields.get(j).getDeclName().equals(id)) {
                   index = j;
+                  t = fields.get(j).getDeclType();
                }
             }
          }
       }
-      GetElementInstruction instr = new GetElementInstruction(v, index);
+      LLVMType type;
+      if (t instanceof StructType) {
+         type = new LLVMStructType(((StructType)(t)).getStructName());
+      }
+      else {
+         type = new iType(64);
+      }
+      GetElementInstruction instr = new GetElementInstruction(v, index, type);
       curBlock.addInstruction(instr);
       Value v2 = instr.getReg();
-      return v2;
+      LoadInstruction instr2 = new LoadInstruction(v2.getRegType(), v2.getRegNameNoSym());
+      curBlock.addInstruction(instr2);
+      Value v3 = instr2.getReg();
+      return v3;
    }
 }

@@ -120,11 +120,12 @@ public class Program
                Type t = decls.get(m).getDeclType();
                LLVMStructType llstruct = new LLVMStructType(((StructType)t).getStructName());
                outFile.print(llstruct.getLLVMTypeName() + " ");
+               outFile.print("null, align 8\n\n");
             }
             else {
-               outFile.print("i64" );
+               outFile.print("i64 " );
+               outFile.print("0, align 8\n\n");
             }
-            outFile.print("null, align 8\n\n");
          }
 
        // print func declarations, func params, and LU's
