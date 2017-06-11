@@ -7,6 +7,7 @@ fun getRands (int seed, int num) struct linkedNums {
    int cur,prev;
    struct linkedNums curNode,prevNode; 
 
+   curNode = null;
    cur = seed * seed;
    prevNode = new linkedNums;
 

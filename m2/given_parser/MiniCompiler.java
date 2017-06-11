@@ -35,7 +35,13 @@ public class MiniCompiler
          MiniToAstProgramVisitor programVisitor =
             new MiniToAstProgramVisitor();
          ast.Program program = programVisitor.visit(tree);
-         program.printAll();
+         if (args.length == 2 && args[1].equals("-llvm")) {
+            program.printAll(args[0]);
+         }
+         else {
+            System.err.println("needs to add flag -llvm");
+            System.exit(1);
+         }
       }
    }
 
@@ -47,8 +53,8 @@ public class MiniCompiler
       {
          if (args[i].charAt(0) == '-')
          {
-            System.err.println("unexpected option: " + args[i]);
-            System.exit(1);
+           // System.err.println("unexpected option: " + args[i]);
+           // System.exit(1);
          }
          else if (_inputFile != null)
          {

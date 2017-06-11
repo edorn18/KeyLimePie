@@ -96,7 +96,7 @@ fun main() int {
    sum = add(list);
    result = product - sum / 2;
 
-   while (i < 10) {
+   while (i < 2) {
       bigProduct = bigProduct + recurseList(list);
       i = i + 1;
    }

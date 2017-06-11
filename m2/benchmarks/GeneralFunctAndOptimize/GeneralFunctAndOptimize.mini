@@ -51,6 +51,8 @@ fun main() int
    print interval endl;
 
    countOuter = 0;
+   countInner = 0;
+   calc = 0;
 
    # Test of inner loops
    while(countOuter < 50){

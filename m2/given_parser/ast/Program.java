@@ -20,6 +20,8 @@ public class Program
    private List<Block> startBlockList = new ArrayList<Block>();
    private List<Block> endBlockList = new ArrayList<Block>();
 
+   private String inputFile = "";
+
    public Program(List<TypeDeclaration> types, List<Declaration> decls,
       List<Function> funcs)
    {
@@ -28,7 +30,8 @@ public class Program
       this.funcs = funcs;
    }
 
-   public void printAll() {
+   public void printAll(String fileName) {
+      this.inputFile = fileName;
       //printTypes();
       //printDecls();
       //printFuncs();
@@ -92,7 +95,8 @@ public class Program
 
    public void printLlvmFile() {
       try {
-         PrintWriter outFile = new PrintWriter("test.ll", "UTF-8");
+         String shortInputName = inputFile.substring(inputFile.lastIndexOf('/') + 1, inputFile.length() - 5);
+         PrintWriter outFile = new PrintWriter(shortInputName + ".ll", "UTF-8");
          int funcCounter = 0;
          outFile.println("target triple=\"x86_64\"");
 

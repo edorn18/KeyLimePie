@@ -1,0 +1,7 @@
+M2 Stack-based LLVM Benchmarks
+
+to run after running make, use "java MiniCompiler (location of input .mini file) -llvm" to receive a .ll file named the same as the .mini input file.
+
+The (location of input .mini file) must be specified with at least a "/" as it is necessary for the program to obtain the name of the input file to use as the output file.
+
+Example "java MiniCompiler ../benchmarks/fact_sum/fact_sum.mini -llvm" produces a fact_sum.ll file in the current directory
