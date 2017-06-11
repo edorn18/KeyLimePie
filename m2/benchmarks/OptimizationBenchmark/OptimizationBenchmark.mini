@@ -48,8 +48,8 @@ fun constantPropagation () int {
 	v = a * b - k - l;
 	w = v - s - r * d;
 	x = o - w - v - n;
-	y = p * x * t - w;
-	z = w - x * y + k;
+	y = p * x + t - w;
+	z = w - x + y + k;
 
 	return z;
 }
@@ -205,6 +205,7 @@ fun doubleIf () int {
 	a = 1;
 	b = 2;
 	c = 3;
+        d = 0;
 	
 	if (a == 1) {
 		b = 20;

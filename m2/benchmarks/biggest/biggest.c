@@ -2,15 +2,15 @@
 #include<stdlib.h>
 struct EV_IntList
 {
-long EV_head;
+int EV_head;
 struct EV_IntList * EV_tail;
 };
 struct EV_IntList * _getIntList()
 {
 struct EV_IntList * EV_list;
-long EV_next;
+int EV_next;
 EV_list = (struct EV_IntList*)malloc(sizeof(struct EV_IntList));
-scanf("%ld", &EV_next);
+scanf("%d", &EV_next);
 if ((EV_next==(-1)))
 {
 EV_list->EV_head = EV_next;
@@ -24,7 +24,7 @@ EV_list->EV_tail = _getIntList();
 return EV_list;
 }
 }
-long _biggest(long EV_num1,long EV_num2)
+int _biggest(int EV_num1,int EV_num2)
 {
 if ((EV_num1>EV_num2))
 {
@@ -35,9 +35,9 @@ else
 return EV_num2;
 }
 }
-long _biggestInList(struct EV_IntList * EV_list)
+int _biggestInList(struct EV_IntList * EV_list)
 {
-long EV_big;
+int EV_big;
 EV_big = EV_list->EV_head;
 while ((EV_list->EV_tail!=NULL))
 {
@@ -46,11 +46,11 @@ EV_list = EV_list->EV_tail;
 }
 return EV_big;
 }
-long _main()
+int _main()
 {
 struct EV_IntList * EV_list;
 EV_list = _getIntList();
-printf("%ld\n", (long)_biggestInList(EV_list));
+printf("%d\n", _biggestInList(EV_list));
 return 0;
 }
 int main(void)

@@ -2,15 +2,15 @@
 #include<stdlib.h>
 struct EV_gameBoard
 {
-long EV_a;
-long EV_b;
-long EV_c;
-long EV_d;
-long EV_e;
-long EV_f;
-long EV_g;
-long EV_h;
-long EV_i;
+int EV_a;
+int EV_b;
+int EV_c;
+int EV_d;
+int EV_e;
+int EV_f;
+int EV_g;
+int EV_h;
+int EV_i;
 };
 void _cleanBoard(struct EV_gameBoard * EV_board)
 {
@@ -26,23 +26,23 @@ EV_board->EV_i = 0;
 }
 void _printBoard(struct EV_gameBoard * EV_board)
 {
-printf("%ld ", (long)EV_board->EV_a);
-printf("%ld ", (long)EV_board->EV_b);
-printf("%ld\n", (long)EV_board->EV_c);
-printf("%ld ", (long)EV_board->EV_d);
-printf("%ld ", (long)EV_board->EV_e);
-printf("%ld\n", (long)EV_board->EV_f);
-printf("%ld ", (long)EV_board->EV_g);
-printf("%ld ", (long)EV_board->EV_h);
-printf("%ld\n", (long)EV_board->EV_i);
+printf("%d ", EV_board->EV_a);
+printf("%d ", EV_board->EV_b);
+printf("%d\n", EV_board->EV_c);
+printf("%d ", EV_board->EV_d);
+printf("%d ", EV_board->EV_e);
+printf("%d\n", EV_board->EV_f);
+printf("%d ", EV_board->EV_g);
+printf("%d ", EV_board->EV_h);
+printf("%d\n", EV_board->EV_i);
 }
 void _printMoveBoard()
 {
-printf("%ld\n", (long)123);
-printf("%ld\n", (long)456);
-printf("%ld\n", (long)789);
+printf("%d\n", 123);
+printf("%d\n", 456);
+printf("%d\n", 789);
 }
-void _placePiece(struct EV_gameBoard * EV_board,long EV_turn,long EV_placement)
+void _placePiece(struct EV_gameBoard * EV_board,int EV_turn,int EV_placement)
 {
 if ((EV_placement==1))
 {
@@ -105,7 +105,7 @@ EV_board->EV_i = EV_turn;
 }
 }
 }
-long _checkWinner(struct EV_gameBoard * EV_board)
+int _checkWinner(struct EV_gameBoard * EV_board)
 {
 if ((EV_board->EV_a==1))
 {
@@ -229,13 +229,13 @@ return 1;
 }
 return (-1);
 }
-long _main()
+int _main()
 {
-long EV_turn;
-long EV_space1;
-long EV_space2;
-long EV_winner;
-long EV_i;
+int EV_turn;
+int EV_space1;
+int EV_space2;
+int EV_winner;
+int EV_i;
 struct EV_gameBoard * EV_board;
 EV_i = 0;
 EV_turn = 0;
@@ -250,19 +250,19 @@ _printBoard(EV_board);
 if ((EV_turn==0))
 {
 EV_turn = (EV_turn+1);
-scanf("%ld", &EV_space1);
+scanf("%d", &EV_space1);
 _placePiece(EV_board, 1, EV_space1);
 }
 else
 {
 EV_turn = (EV_turn-1);
-scanf("%ld", &EV_space2);
+scanf("%d", &EV_space2);
 _placePiece(EV_board, 2, EV_space2);
 }
 EV_winner = _checkWinner(EV_board);
 EV_i = (EV_i+1);
 }
-printf("%ld\n", (long)(EV_winner+1));
+printf("%d\n", (EV_winner+1));
 return 0;
 }
 int main(void)

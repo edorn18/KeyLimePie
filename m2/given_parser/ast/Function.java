@@ -84,6 +84,7 @@ public class Function
       Block end = new Block(allBlockList.size());
       allBlockList.add(end);
       endBlockList.add(end);
+      localTable.put("_retval_", retType);
       if (((BlockStatement)body).isEmpty()) {
          start.addBlock(end);
       }

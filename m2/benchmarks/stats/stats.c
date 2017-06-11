@@ -2,15 +2,16 @@
 #include<stdlib.h>
 struct EV_linkedNums
 {
-long EV_num;
+int EV_num;
 struct EV_linkedNums * EV_next;
 };
-struct EV_linkedNums * _getRands(long EV_seed,long EV_num)
+struct EV_linkedNums * _getRands(int EV_seed,int EV_num)
 {
-long EV_cur;
-long EV_prev;
+int EV_cur;
+int EV_prev;
 struct EV_linkedNums * EV_curNode;
 struct EV_linkedNums * EV_prevNode;
+EV_curNode = NULL;
 EV_cur = (EV_seed*EV_seed);
 EV_prevNode = (struct EV_linkedNums*)malloc(sizeof(struct EV_linkedNums));
 EV_prevNode->EV_num = EV_cur;
@@ -29,11 +30,11 @@ EV_prev = EV_cur;
 }
 return EV_curNode;
 }
-long _calcMean(struct EV_linkedNums * EV_nums)
+int _calcMean(struct EV_linkedNums * EV_nums)
 {
-long EV_sum;
-long EV_num;
-long EV_mean;
+int EV_sum;
+int EV_num;
+int EV_mean;
 EV_sum = 0;
 EV_num = 0;
 EV_mean = 0;
@@ -49,11 +50,11 @@ EV_mean = (EV_sum/EV_num);
 }
 return EV_mean;
 }
-long _approxSqrt(long EV_num)
+int _approxSqrt(int EV_num)
 {
-long EV_guess;
-long EV_result;
-long EV_prev;
+int EV_guess;
+int EV_result;
+int EV_prev;
 EV_guess = 1;
 EV_prev = EV_guess;
 EV_result = 0;
@@ -69,15 +70,15 @@ void _approxSqrtAll(struct EV_linkedNums * EV_nums)
 {
 while ((EV_nums!=NULL))
 {
-printf("%ld\n", (long)_approxSqrt(EV_nums->EV_num));
+printf("%d\n", _approxSqrt(EV_nums->EV_num));
 EV_nums = EV_nums->EV_next;
 }
 }
 void _range(struct EV_linkedNums * EV_nums)
 {
-long EV_min;
-long EV_max;
-long EV_first;
+int EV_min;
+int EV_max;
+int EV_first;
 EV_min = 0;
 EV_max = 0;
 EV_first = 1;
@@ -105,20 +106,20 @@ EV_max = EV_nums->EV_num;
 }
 EV_nums = EV_nums->EV_next;
 }
-printf("%ld\n", (long)EV_min);
-printf("%ld\n", (long)EV_max);
+printf("%d\n", EV_min);
+printf("%d\n", EV_max);
 }
-long _main()
+int _main()
 {
-long EV_seed;
-long EV_num;
-long EV_mean;
+int EV_seed;
+int EV_num;
+int EV_mean;
 struct EV_linkedNums * EV_nums;
-scanf("%ld", &EV_seed);
-scanf("%ld", &EV_num);
+scanf("%d", &EV_seed);
+scanf("%d", &EV_num);
 EV_nums = _getRands(EV_seed, EV_num);
 EV_mean = _calcMean(EV_nums);
-printf("%ld\n", (long)EV_mean);
+printf("%d\n", EV_mean);
 _range(EV_nums);
 _approxSqrtAll(EV_nums);
 return 0;

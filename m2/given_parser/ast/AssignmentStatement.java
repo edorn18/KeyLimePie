@@ -49,24 +49,90 @@ public class AssignmentStatement
 
    public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable, List<TypeDeclaration> types) {
       if (source instanceof ReadExpression) {
-         curBlock.addInstruction(new ReadInstruction(new iType(64), target.getName()));
+         if (target instanceof LvalueDot) {
+            Value r2 = ((LvalueDot)(target)).buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);
+            curBlock.addInstruction(new ReadInstruction(r2.getRegType(), r2.getRegNameNoSym()));
+         }
+         else {
+            String targName = target.getName();
+            LLVMType newType = null;
+            if (localTable.get(targName) != null) {
+               if (localTable.get(targName) instanceof StructType) {
+                  newType = new LLVMStructType(((StructType)(localTable.get(targName))).getStructName());
+               }
+               else {
+                  newType = new iType(64);
+               }
+            }
+            else if (globalTable.get(targName) != null) {
+               if (globalTable.get(targName) instanceof StructType) {
+                  newType = new LLVMStructType(((StructType)(globalTable.get(targName))).getStructName());
+               }
+               else {
+                  newType = new iType(64);
+               }
+            }
+            if (varTable.get(target.getName()) != null) {
+               targName = varTable.get(target.getName());
+               curBlock.addInstruction(new ReadInstruction(newType, targName));
+            }
+            else {
+               targName = target.getName();
+               curBlock.addInstruction(new ReadInstruction(newType, targName, 1));
+            }
+         }
       }
       else {
          Value r = source.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);
          if (target instanceof LvalueId) {
             String targName;
             if (varTable.get(target.getName()) != null) {
+               targName = target.getName();
+               LLVMType newType = null;
+               if (localTable.get(targName) != null) {
+                  if (localTable.get(targName) instanceof StructType) {
+                     newType = new LLVMStructType(((StructType)(localTable.get(targName))).getStructName());
+                  }
+                  else {
+                     newType = new iType(64);
+                  }
+               }
+               else if (globalTable.get(targName) != null) {
+                  if (globalTable.get(targName) instanceof StructType) {
+                     newType = new LLVMStructType(((StructType)(globalTable.get(targName))).getStructName());
+                  }
+                  else {
+                     newType = new iType(64);
+                  }
+               }               
                targName = varTable.get(target.getName());
-               curBlock.addInstruction(new StoreInstruction(r.getRegType(), r, r.getRegType(), new Register(r.getRegType(), targName)));
+               curBlock.addInstruction(new StoreInstruction(newType, r, newType, new Register(newType, targName)));
             }
             else {
                targName = target.getName();
-               curBlock.addInstruction(new StoreInstruction(r.getRegType(), r, r.getRegType(), new Register(r.getRegType(), targName, 1)));
+               LLVMType newType = null;
+               if (localTable.get(targName) != null) {
+                  if (localTable.get(targName) instanceof StructType) {
+                     newType = new LLVMStructType(((StructType)(localTable.get(targName))).getStructName());
+                  }
+                  else {
+                     newType = new iType(64);
+                  }
+               }
+               else if (globalTable.get(targName) != null) {
+                  if (globalTable.get(targName) instanceof StructType) {
+                     newType = new LLVMStructType(((StructType)(globalTable.get(targName))).getStructName());
+                  }
+                  else {
+                     newType = new iType(64);
+                  }
+               }
+               curBlock.addInstruction(new StoreInstruction(newType, r, newType, new Register(newType, targName, 1)));
             }
          }
          else {
             Value r2 = ((LvalueDot)(target)).buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);
-            curBlock.addInstruction(new StoreInstruction(r.getRegType(), r, r.getRegType(), r2));
+            curBlock.addInstruction(new StoreInstruction(r2.getRegType(), r, r2.getRegType(), r2));
          }
 
       }

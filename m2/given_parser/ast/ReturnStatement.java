@@ -15,7 +15,10 @@ public class ReturnStatement
    }
 
    public void checkType(Hashtable<String,Type> funcTable, Hashtable<String, Hashtable<String,Type>> structTable, Type retType) {
-      if (!(expression.checkType(funcTable, structTable, retType).getClass().equals(retType.getClass()))) {
+      if (retType instanceof StructType && (expression.checkType(funcTable, structTable, retType) instanceof StructType || expression.checkType(funcTable, structTable, retType) instanceof NullType)) {
+         return;
+      } 
+      else if (!(expression.checkType(funcTable, structTable, retType).getClass().equals(retType.getClass()))) {
          throw new IllegalArgumentException("Line #: " + lineNum + "- Expression does not match return type of function");
       } 
    }
@@ -27,7 +30,15 @@ public class ReturnStatement
    public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable, List<TypeDeclaration> types) {
       
       Value v = expression.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);
-      curBlock.addInstruction(new StoreInstruction(v.getRegType(), v, v.getRegType(), new Register(v.getRegType(), "_retval_")));
+      Type t = localTable.get("_retval_");
+      LLVMType type;
+      if (t instanceof StructType) {
+         type = new LLVMStructType(((StructType)t).getStructName());
+      }
+      else {
+         type = new iType(64);
+      }
+      curBlock.addInstruction(new StoreInstruction(type, v, type, new Register(type, "_retval_")));
       curBlock.addInstruction(new BranchLabelInstruction(endBlock));
       curBlock.addBlock(endBlock);
 

@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-long _computeFib(long EV_input)
+int _computeFib(int EV_input)
 {
 if ((EV_input==0))
 {
@@ -18,11 +18,11 @@ return (_computeFib((EV_input-1))+_computeFib((EV_input-2)));
 }
 }
 }
-long _main()
+int _main()
 {
-long EV_input;
-scanf("%ld", &EV_input);
-printf("%ld\n", (long)_computeFib(EV_input));
+int EV_input;
+scanf("%d", &EV_input);
+printf("%d\n", _computeFib(EV_input));
 return 0;
 }
 int main(void)

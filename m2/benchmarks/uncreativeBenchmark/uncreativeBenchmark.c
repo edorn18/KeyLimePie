@@ -2,24 +2,24 @@
 #include<stdlib.h>
 struct EV_LameStruct
 {
-long EV_one;
-long EV_two;
-long EV_three;
-long EV_four;
-long EV_five;
-long EV_six;
-long EV_seven;
-long EV_eight;
-long EV_nine;
+int EV_one;
+int EV_two;
+int EV_three;
+int EV_four;
+int EV_five;
+int EV_six;
+int EV_seven;
+int EV_eight;
+int EV_nine;
 };
-long _countTotal(struct EV_LameStruct * EV_what)
+int _countTotal(struct EV_LameStruct * EV_what)
 {
-long EV_total;
+int EV_total;
 EV_total = 0;
 EV_total = ((((((((EV_what->EV_one+EV_what->EV_two)+EV_what->EV_three)+EV_what->EV_four)+EV_what->EV_five)+EV_what->EV_six)+EV_what->EV_seven)+EV_what->EV_eight)+EV_what->EV_nine);
 return EV_total;
 }
-long _printRecursive(long EV_num,long EV_rec)
+int _printRecursive(int EV_num,int EV_rec)
 {
 if ((EV_rec==0))
 {
@@ -27,12 +27,12 @@ return EV_num;
 }
 else
 {
-printf("%ld\n", (long)EV_num);
+printf("%d\n", EV_num);
 EV_rec = (EV_rec-1);
 return _printRecursive(EV_num, EV_rec);
 }
 }
-long _convertBinary(long EV_number)
+int _convertBinary(int EV_number)
 {
 if ((EV_number==0))
 {
@@ -99,11 +99,11 @@ return 1001;
 }
 }
 }
-long _main()
+int _main()
 {
-long EV_current;
-long EV_count;
-long EV_total;
+int EV_current;
+int EV_count;
+int EV_total;
 struct EV_LameStruct * EV_digits;
 EV_digits = (struct EV_LameStruct*)malloc(sizeof(struct EV_LameStruct));
 EV_count = 0;
@@ -116,7 +116,7 @@ EV_digits->EV_six = 0;
 EV_digits->EV_seven = 0;
 EV_digits->EV_eight = 0;
 EV_digits->EV_nine = 0;
-scanf("%ld", &EV_current);
+scanf("%d", &EV_current);
 while ((EV_current!=0))
 {
 if ((EV_current==1))
@@ -176,9 +176,9 @@ EV_digits->EV_nine = (EV_digits->EV_nine+1);
 }
 }
 }
-scanf("%ld", &EV_current);
+scanf("%d", &EV_current);
 }
-printf("%ld\n", (long)_countTotal(EV_digits));
+printf("%d\n", _countTotal(EV_digits));
 _printRecursive(_convertBinary(1), EV_digits->EV_one);
 _printRecursive(_convertBinary(2), EV_digits->EV_two);
 _printRecursive(_convertBinary(3), EV_digits->EV_three);

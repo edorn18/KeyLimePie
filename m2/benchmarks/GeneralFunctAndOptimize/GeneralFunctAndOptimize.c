@@ -2,11 +2,11 @@
 #include<stdlib.h>
 struct EV_IntHolder
 {
-long EV_num;
+int EV_num;
 };
-long EV_interval;
-long EV_end;
-long _multBy4xTimes(struct EV_IntHolder * EV_num,long EV_timesLeft)
+int EV_interval;
+int EV_end;
+int _multBy4xTimes(struct EV_IntHolder * EV_num,int EV_timesLeft)
 {
 if ((EV_timesLeft<=0))
 {
@@ -22,24 +22,26 @@ EV_num->EV_num = (EV_num->EV_num/2);
 EV_num->EV_num = (EV_num->EV_num/2);
 EV_num->EV_num = (EV_num->EV_num/2);
 }
-long _main()
+int _main()
 {
-long EV_start;
-long EV_countOuter;
-long EV_countInner;
-long EV_calc;
-long EV_tempAnswer;
-long EV_tempInterval;
+int EV_start;
+int EV_countOuter;
+int EV_countInner;
+int EV_calc;
+int EV_tempAnswer;
+int EV_tempInterval;
 struct EV_IntHolder * EV_x;
-long EV_uselessVar;
-long EV_uselessVar2;
+int EV_uselessVar;
+int EV_uselessVar2;
 EV_x = (struct EV_IntHolder*)malloc(sizeof(struct EV_IntHolder));
 EV_end = 1000000;
-scanf("%ld", &EV_start);
-scanf("%ld", &EV_interval);
-printf("%ld\n", (long)EV_start);
-printf("%ld\n", (long)EV_interval);
+scanf("%d", &EV_start);
+scanf("%d", &EV_interval);
+printf("%d\n", EV_start);
+printf("%d\n", EV_interval);
 EV_countOuter = 0;
+EV_countInner = 0;
+EV_calc = 0;
 while ((EV_countOuter<50))
 {
 EV_countInner = 0;
@@ -61,8 +63,8 @@ EV_countInner = (EV_countInner+EV_tempInterval);
 }
 EV_countOuter = (EV_countOuter+1);
 }
-printf("%ld\n", (long)EV_countInner);
-printf("%ld\n", (long)EV_calc);
+printf("%d\n", EV_countInner);
+printf("%d\n", EV_calc);
 return 0;
 }
 int main(void)

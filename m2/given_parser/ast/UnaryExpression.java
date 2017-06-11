@@ -62,8 +62,16 @@ public class UnaryExpression
    }
 
    public Value buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable, List<TypeDeclaration> types) {
-      Value v1 = operand.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);  
-      return new ImmediateRegister("-" + v1.getRegName());
+      Value v1 = operand.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);
+      if (this.operator == Operator.MINUS) { 
+         return new ImmediateRegister("-" + v1.getRegName());
+      }
+      else {
+         XorInstruction instr = new XorInstruction(v1, new ImmediateRegister("1"));
+         curBlock.addInstruction(instr);
+         Value v2 = instr.getReg();
+         return v2;
+      }
    }
 
    private static final String NOT_OPERATOR = "!";

@@ -1,9 +1,9 @@
 #include<stdio.h>
 #include<stdlib.h>
-long _function(long EV_n)
+int _function(int EV_n)
 {
-long EV_i;
-long EV_j;
+int EV_i;
+int EV_j;
 if ((EV_n<=0))
 {
 return 0;
@@ -12,17 +12,17 @@ EV_i = 0;
 while ((EV_i<(EV_n*EV_n)))
 {
 EV_j = (EV_i+EV_n);
-printf("%ld ", (long)EV_j);
+printf("%d ", EV_j);
 EV_i = (EV_i+1);
 }
 return _function((EV_n-1));
 }
-long _main()
+int _main()
 {
-long EV_num;
-scanf("%ld", &EV_num);
+int EV_num;
+scanf("%d", &EV_num);
 _function(EV_num);
-printf("%ld\n", (long)0);
+printf("%d\n", 0);
 return 0;
 }
 int main(void)

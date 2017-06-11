@@ -1,14 +1,14 @@
 #include<stdio.h>
 #include<stdlib.h>
-long _mod(long EV_a,long EV_b)
+int _mod(int EV_a,int EV_b)
 {
 return (EV_a-((EV_a/EV_b)*EV_b));
 }
-void _hailstone(long EV_n)
+void _hailstone(int EV_n)
 {
 while (1)
 {
-printf("%ld ", (long)EV_n);
+printf("%d ", EV_n);
 if ((_mod(EV_n, 2)==1))
 {
 EV_n = ((3*EV_n)+1);
@@ -19,15 +19,15 @@ EV_n = (EV_n/2);
 }
 if ((EV_n<=1))
 {
-printf("%ld\n", (long)EV_n);
+printf("%d\n", EV_n);
 return ;
 }
 }
 }
-long _main()
+int _main()
 {
-long EV_num;
-scanf("%ld", &EV_num);
+int EV_num;
+scanf("%d", &EV_num);
 _hailstone(EV_num);
 return 0;
 }

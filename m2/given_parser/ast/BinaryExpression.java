@@ -85,6 +85,9 @@ public class BinaryExpression
          else if (left.checkType(funcTable, structTable, retType) instanceof BoolType && right.checkType(funcTable, structTable, retType) instanceof BoolType) {
             return new BoolType();
          }
+         else if (left.checkType(funcTable, structTable, retType) instanceof StructType && (right.checkType(funcTable, structTable, retType) instanceof StructType || right.checkType(funcTable, structTable, retType) instanceof NullType)) {
+            return new BoolType();
+         }
          else {
             throw new IllegalArgumentException("Line #: " + lineNum + "Left and right expressions should be of same type");
          }   
@@ -173,7 +176,7 @@ public class BinaryExpression
       else if (this.operator == Operator.EQ) {
          Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);
          Value v2 = right.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);
-         IcmpInstruction instr = new IcmpInstruction("eq", new iType(64), v1, v2);
+         IcmpInstruction instr = new IcmpInstruction("eq", v1.getRegType(), v1, v2);
          curBlock.addInstruction(instr);
          v = instr.getReg();
          ZextInstruction instr2 = new ZextInstruction(new iType(1), v, new Register(new iType(64)));
@@ -183,7 +186,7 @@ public class BinaryExpression
       else if (this.operator == Operator.NE) {
          Value v1 = left.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);
          Value v2 = right.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);
-         IcmpInstruction instr = new IcmpInstruction("ne", new iType(64), v1, v2);
+         IcmpInstruction instr = new IcmpInstruction("ne", v1.getRegType(), v1, v2);
          curBlock.addInstruction(instr);
          v = instr.getReg();
          ZextInstruction instr2 = new ZextInstruction(new iType(1), v, new Register(new iType(64)));

@@ -2,14 +2,14 @@
 #include<stdlib.h>
 struct EV_plate
 {
-long EV_size;
+int EV_size;
 struct EV_plate * EV_plateUnder;
 };
 struct EV_plate * EV_peg1;
 struct EV_plate * EV_peg2;
 struct EV_plate * EV_peg3;
-long EV_numMoves;
-void _move(long EV_from,long EV_to)
+int EV_numMoves;
+void _move(int EV_from,int EV_to)
 {
 struct EV_plate * EV_plateToMove;
 if ((EV_from==1))
@@ -50,7 +50,7 @@ EV_peg3 = EV_plateToMove;
 }
 EV_numMoves = (EV_numMoves+1);
 }
-void _hanoi(long EV_n,long EV_from,long EV_to,long EV_other)
+void _hanoi(int EV_n,int EV_from,int EV_to,int EV_other)
 {
 if ((EV_n==1))
 {
@@ -69,20 +69,20 @@ struct EV_plate * EV_aPlate;
 EV_aPlate = EV_peg;
 while ((EV_aPlate!=NULL))
 {
-printf("%ld\n", (long)EV_aPlate->EV_size);
+printf("%d\n", EV_aPlate->EV_size);
 EV_aPlate = EV_aPlate->EV_plateUnder;
 }
 }
-long _main()
+int _main()
 {
-long EV_count;
-long EV_numPlates;
+int EV_count;
+int EV_numPlates;
 struct EV_plate * EV_aPlate;
 EV_peg1 = NULL;
 EV_peg2 = NULL;
 EV_peg3 = NULL;
 EV_numMoves = 0;
-scanf("%ld", &EV_numPlates);
+scanf("%d", &EV_numPlates);
 if ((EV_numPlates>=1))
 {
 EV_count = EV_numPlates;
@@ -94,20 +94,20 @@ EV_aPlate->EV_plateUnder = EV_peg1;
 EV_peg1 = EV_aPlate;
 EV_count = (EV_count-1);
 }
-printf("%ld\n", (long)1);
+printf("%d\n", 1);
 _printPeg(EV_peg1);
-printf("%ld\n", (long)2);
+printf("%d\n", 2);
 _printPeg(EV_peg2);
-printf("%ld\n", (long)3);
+printf("%d\n", 3);
 _printPeg(EV_peg3);
 _hanoi(EV_numPlates, 1, 3, 2);
-printf("%ld\n", (long)1);
+printf("%d\n", 1);
 _printPeg(EV_peg1);
-printf("%ld\n", (long)2);
+printf("%d\n", 2);
 _printPeg(EV_peg2);
-printf("%ld\n", (long)3);
+printf("%d\n", 3);
 _printPeg(EV_peg3);
-printf("%ld\n", (long)EV_numMoves);
+printf("%d\n", EV_numMoves);
 while ((EV_peg3!=NULL))
 {
 EV_aPlate = EV_peg3;

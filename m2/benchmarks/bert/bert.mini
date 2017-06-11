@@ -379,6 +379,8 @@ fun main() int
    int i, element;
    struct node myList, copyList1, copyList2, sortedList;
    myList = null;
+   copyList1 = null;
+   copyList2 = null;
 
    i = 0;
    while(i < 10)

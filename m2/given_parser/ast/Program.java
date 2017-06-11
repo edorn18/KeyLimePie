@@ -60,6 +60,7 @@ public class Program
       for (int i = 0; i < funcs.size(); i++) {
          funcs.get(i).buildCFG(allBlockList, startBlockList, endBlockList, globalTable, types);
       }
+      /*
       for (int i = 0; i < allBlockList.size() ; i++) {
          System.out.println("Block " + allBlockList.get(i).getLabel());
          System.out.print("Links to block(s): ");
@@ -70,6 +71,7 @@ public class Program
          System.out.println();
          // block i prints block i's links
       }
+      */
    }
 
    public void makeSymbolTables() {
@@ -140,7 +142,13 @@ public class Program
                   outFile.print("define ");
                }
                if (!(funcs.get(funcCounter).getFunctionRetType() instanceof VoidType)) {
-                  outFile.print("i64 ");
+                  if (funcs.get(funcCounter).getFunctionRetType() instanceof StructType) {
+                     LLVMStructType t = new LLVMStructType(((StructType)(funcs.get(funcCounter).getFunctionRetType())).getStructName());
+                     outFile.print(t.getLLVMTypeName() + " ");
+                  }
+                  else {
+                     outFile.print("i64 ");
+                  }
                }
                else {
                   outFile.print("void ");
@@ -156,7 +164,7 @@ public class Program
                      if (funcParams.get(j).getDeclType() instanceof StructType) {
                         Type t = funcParams.get(j).getDeclType();
                         LLVMStructType llstruct = new LLVMStructType(((StructType)t).getStructName());
-                        outFile.print(llstruct.getLLVMTypeName());
+                        outFile.print(llstruct.getLLVMTypeName() + " ");
                      }
                      if (j < funcParams.size() - 1) {
                         outFile.print("%" + funcParams.get(j).getDeclName() + ", ");

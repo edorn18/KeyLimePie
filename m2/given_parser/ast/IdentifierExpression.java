@@ -40,8 +40,8 @@ public class IdentifierExpression
       else {
          if (globalTable.get(id) != null) {
             if (globalTable.get(id) instanceof StructType) {
-            ldInstr = new LoadInstruction(new LLVMStructType(((StructType)(localTable.get(id))).getStructName()), id);
-            curBlock.addInstruction(ldInstr);
+               ldInstr = new LoadInstruction(new LLVMStructType(((StructType)(globalTable.get(id))).getStructName()), id, 1);
+               curBlock.addInstruction(ldInstr);
             }
             else {
                ldInstr = new LoadInstruction(new iType(64), id, 1);

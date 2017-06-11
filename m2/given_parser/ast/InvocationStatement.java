@@ -25,7 +25,7 @@ public class InvocationStatement
 
    public Block buildBlock(List<Block> allBlockList, Block curBlock, Block endBlock, Hashtable<String, Type> globalTable, Hashtable<String, Type> localTable, Hashtable<String, String> varTable, List<TypeDeclaration> types) {
       expression.buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);
-      System.out.println("This is a statement");
+      //System.out.println("This is a statement");
       return curBlock;
    }
 }

@@ -52,13 +52,25 @@ public class InvocationExpression
       Value v;
       Register r;
 
+      FuncType f = (FuncType)(globalTable.get(name));
+      List<Declaration> arg_list = f.getFuncParams();
       for (int i = 0; i < arguments.size(); i++) {
          v = arguments.get(i).buildBlock(allBlockList, curBlock, endBlock, globalTable, localTable, varTable, types);
-         regList.add(v);
+         if (v.getRegName() == "null") {
+            Type t = arg_list.get(i).getDeclType();
+            LLVMType t2;
+            if (t instanceof StructType) {
+               t2 = new LLVMStructType(((StructType)(t)).getStructName());
+            }
+            else {
+               t2 = new iType(64);
+            }
+            regList.add(new ImmediateRegister("null", t2));
+         }
+         else {
+            regList.add(v);
+         }
       }
-
-      FuncType f = (FuncType)(globalTable.get(name));
-
 
       if (f.getFuncType() instanceof VoidType) {
          r = new Register(new iType(64));
